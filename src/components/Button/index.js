@@ -1,44 +1,46 @@
 import React, {useState} from 'react';
 
 import './style.css'
-export function Button() {
+import './dr.css'
+
+export function Button(props) {
+    const {children = null} = props;
     const [id, setId] = useState(0);
-    const [span, setSpan] = useState([]);
+    const [spanStyle, setSpanStyle] = useState([]);
 
     function handleMouseDown(e) {
-        const self = e.target;
-        const eWidth = self.clientWidth;
-        const eHeight = self.clientHeight;
+        const ripple = e.target;
+        const eWidth = ripple.clientWidth;
+        const eHeight = ripple.clientHeight;
         const elSize = Math.max(eWidth, eHeight);
-        const rippleX = parseInt(e.pageX - self.offsetLeft) - (elSize / 2);
-        const rippleY = parseInt(e.pageY - self.offsetTop) - (elSize / 2);
+        const rippleX = parseInt(e.pageX - ripple.offsetLeft) - (elSize / 2);
+        const rippleY = parseInt(e.pageY - ripple.offsetTop) - (elSize / 2);
         const styleEl = {width: `${elSize}px`, height: `${elSize}px`, top: `${rippleY}px`, left: `${rippleX}px`};
-        setSpan([...span, styleEl]);
+        setSpanStyle([...spanStyle, styleEl]);
     }
 
-    function handleMouseUp(e) {
+    function handleMouseUp() {
         clearTimeout(id);
         const idTimeout = setTimeout(function () {
-            setSpan([]);
+            setSpanStyle([]);
         }, 2000);
         setId(idTimeout)
     }
 
     return (
-
         <button
             className="rkmd-btn btn-lightBlue ripple-effect"
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
         >
             <div>
-                {span.map((el, i) => <span
+                {spanStyle.map((el, i) => <span
                     key={i}
                     className={'ripple animated'}
                     style={el}
                 />)}
             </div>
-            Submit
+            {children}
         </button>
 
     )
