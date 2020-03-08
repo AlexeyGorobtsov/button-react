@@ -1,0 +1,26 @@
+.md-button-toggle .md-toggle-icon {
+    display: block;
+    margin-left: auto;
+    speak: none;
+    vertical-align: middle;
+     -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    transition: -webkit-transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+.md-button-toggle .md-toggle-icon.toggled {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.md-icon {
+    margin: auto;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+    min-height: 24px;
+    min-width: 24px;
+}
