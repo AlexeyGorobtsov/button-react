@@ -5,7 +5,7 @@ import {MdToggleArrow} from "../md-toggle-arrow";
 
 import './style.css'
 
-const liArr = ['paragraph-1', 'paragraph-2', 'paragraph-3', 'paragraph-4']
+const liArr = ['paragraph-1', 'paragraph-2', 'paragraph-3', 'paragraph-4'];
 
 export function MenuToggle(props) {
     const [isToggle, setToggle] = useState(false);

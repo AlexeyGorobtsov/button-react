@@ -8,7 +8,8 @@ export function Button(props) {
         children = null,
         mdRaised = false,
         bgRipple = '#212121',
-        bg = 'transparent',
+        styleBtn = {},
+        cn = {},
         events = {}
     } = props;
     const [id, setId] = useState(0);
@@ -35,11 +36,11 @@ export function Button(props) {
 
     return (
         <button
-            className={className('md-button md-button-toggle', 'ripple-effect', {'md-raised': mdRaised})}
+            className={className('md-button md-button-toggle', cn, 'ripple-effect', {'md-raised': mdRaised})}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             ref={btnRef}
-            style={{background: bg}}
+            style={styleBtn}
             {...events}
         >
             {spanStyle.map((el, i) => <span
