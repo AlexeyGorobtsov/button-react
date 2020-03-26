@@ -4,6 +4,7 @@ import {Button} from "./components/button";
 import {MdToggleArrow} from "./components/md-toggle-arrow";
 import {MenuToggle} from "./components/menu-toggle";
 import {Sidenav} from "./components/sidenave";
+import {IconButton} from "./components/md-icon-button";
 
 export default function App() {
     const [isToggle, setToggle] = useState(false);
@@ -17,6 +18,7 @@ export default function App() {
       >
           CLICK ME
       </Button>
+        <IconButton>L</IconButton>
         <div style={{width: '240px', top: 0, right: 0, position: 'absolute'}}>
             <MenuToggle />
             <MenuToggle />

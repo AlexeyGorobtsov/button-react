@@ -3,7 +3,7 @@ import className from 'classnames';
 
 import './style.css'
 
-export function Button(props) {
+export function IconButton(props) {
     const {
         children = null,
         mdRaised = false,
@@ -24,9 +24,12 @@ export function Button(props) {
         const ripple = btnRef.current;
         const pos = ripple.getBoundingClientRect();
         const size = ripple.offsetWidth;
-        const x = e.pageX - pos.left - (size / 2);
-        const y = e.pageY - pos.top - (size / 2);
-        const styleEl = {width: `${size}px`, height: `${size}px`, top: `${y}px`, left: `${x}px`};
+        const styleEl = {
+            width: `${size}px`,
+            height: `${size}px`,
+            top: `${size/pos.height}px`,
+            left: `${size/pos.width}px`
+        };
         setSpanStyle([...spanStyle, styleEl]);
     }
 
@@ -40,7 +43,12 @@ export function Button(props) {
 
     return (
         <button
-            className={className('md-button md-button-toggle', cn, 'ripple-effect', {'md-raised': mdRaised})}
+            className={className(
+                'md-button md-button-toggle md-icon-button',
+                cn,
+                'ripple-effect',
+                {'md-raised': mdRaised}
+                )}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             ref={btnRef}
@@ -56,4 +64,4 @@ export function Button(props) {
         </button>
 
     )
-};
+}
