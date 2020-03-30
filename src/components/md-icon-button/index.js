@@ -18,7 +18,7 @@ export function IconButton(props) {
 
     useEffect(() => {
         return () => clearTimeout(id)
-    });
+    }, []);
 
     function handleMouseDown(e) {
         const ripple = btnRef.current;
