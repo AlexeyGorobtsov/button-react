@@ -19,8 +19,7 @@ export default function App() {
       >
           CLICK ME
       </Button>
-        <IconButton>L</IconButton>
-        <IconButton>Z</IconButton>
+        <IconButton tooltipLabel={'Hello world!'}>Yes</IconButton>
         <div style={{width: '240px', top: 0, right: 0, position: 'absolute'}}>
             <MenuToggle />
             <MenuToggle />
