@@ -20,7 +20,7 @@ export function MenuToggle(props) {
     }, []);
     useEffect(() => {
         isToggle ? setStyle({height: `${height}px`}) : setStyle({height: 0})
-    }, [isToggle]);
+    }, [isToggle, height]);
 
     return (
         <div className={'menu-toggle'}>

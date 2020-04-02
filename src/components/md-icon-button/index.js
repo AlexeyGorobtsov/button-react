@@ -65,7 +65,8 @@ export function IconButton(props) {
         styleBtn = {},
         cn = {},
         events = {},
-        tooltipLabel = ''
+        tooltipLabel = '',
+        position = 'top'
     } = props;
     const btnRef = useRef(null);
     const tooltipRef = useRef(null);
@@ -89,12 +90,37 @@ export function IconButton(props) {
     }, []);
 
     function handleMouseover() {
-        const ripple = btnRef.current;
-        const pos = ripple.getBoundingClientRect();
+        const btn = btnRef.current;
+        const pos = btn.getBoundingClientRect();
         const tooltip = tooltipRef.current;
-        const top = `${pos.top - tooltip.offsetHeight}px`;
-        const left = `${pos.left - (tooltip.offsetWidth - pos.width) / 2}px`;
-        const styleTooltip = { top, left, zIndex: 101, pointerEvents: "all" };
+        let styleTooltip;
+        switch (position) {
+            case 'top': {
+                const top = `${pos.top - tooltip.offsetHeight}px`;
+                const left = `${pos.left - (tooltip.offsetWidth - pos.width) / 2}px`;
+                styleTooltip = { top, left, zIndex: 101, pointerEvents: "all" };
+                break;
+            }
+            case 'right': {
+                const top = `${pos.top - (tooltip.offsetHeight - pos.height)/2}px`;
+                const left = `${pos.left + tooltip.offsetWidth }px`;
+                styleTooltip = { top, left, zIndex: 101, pointerEvents: "all" };
+                break;
+            }
+            case 'bottom': {
+                const top = `${pos.top + pos.height}px`;
+                const left = `${pos.left - (tooltip.offsetWidth - pos.width) / 2}px`;
+                styleTooltip = { top, left, zIndex: 101, pointerEvents: "all" };
+                break;
+            }
+            case 'left': {
+                const top = `${pos.top - (tooltip.offsetHeight - pos.height)/2}px`;
+                const left = `${pos.left - tooltip.offsetWidth }px`;
+                styleTooltip = { top, left, zIndex: 101, pointerEvents: "all" };
+                break;
+            }
+        }
+
         const payload = {tooltipClass: 'md-show', tooltipStyle: styleTooltip};
         dispatch({type: 'MD_ICON_UPDATE', payload});
     }
@@ -181,7 +207,14 @@ export function IconButton(props) {
                 style={{pointerEvents: "none", zIndex: 100}}>
                 <div
                     ref={tooltipRef}
-                    className={className('md-panel md-origin-top md-tooltip md-show-add', tooltipClass)}
+                    className={className(
+                        'md-panel md-tooltip md-show-add',
+                        tooltipClass,
+                        {'md-origin-top': position === 'top'},
+                        {'md-origin-left': position === 'left'},
+                        {'md-origin-bottom': position === 'bottom'},
+                        {'md-origin-right': position === 'right'}
+                        )}
                     role="tooltip"
                     style={tooltipStyle}>
                     {tooltipLabel}
