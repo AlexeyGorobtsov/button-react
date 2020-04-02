@@ -103,7 +103,7 @@ export function IconButton(props) {
             }
             case 'right': {
                 const top = `${pos.top - (tooltip.offsetHeight - pos.height)/2}px`;
-                const left = `${pos.left + tooltip.offsetWidth }px`;
+                const left = `${pos.left + pos.width }px`;
                 styleTooltip = { top, left, zIndex: 101, pointerEvents: "all" };
                 break;
             }
