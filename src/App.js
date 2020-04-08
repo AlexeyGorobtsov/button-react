@@ -7,6 +7,7 @@ import {Sidenav} from "./components/sidenave";
 import {IconButton} from "./components/md-icon-button";
 import {MdCheckbox} from "./components/checkbox";
 import {MdTooltip} from "./components/md-tooltip";
+import { MdList } from "./components/md-list";
 
 export default function App() {
     const [isToggle, setToggle] = useState(false);
@@ -35,6 +36,11 @@ export default function App() {
         <Sidenav isToggle={isToggle}/>
         <div className={'wrap-checkbox'} >
             <MdCheckbox/>
+        </div>
+        <div className={"center"}>
+            <div style={{width: 400}}>
+                <MdList list={['item1', 'item2', 'item3']}/>
+            </div>
         </div>
     </div>
   );
