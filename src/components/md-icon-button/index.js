@@ -130,8 +130,8 @@ export function IconButton(props) {
     }
 
     function handleMouseDown(e) {
-        const ripple = btnRef.current;
-        const size = ripple.offsetWidth;
+        const btn = btnRef.current;
+        const size = btn.offsetWidth;
         const styleEl = {
             width: `${size}px`,
             height: `${size}px`,

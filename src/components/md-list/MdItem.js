@@ -102,7 +102,7 @@ export function MdItem(props) {
     function handleMouseUp() {
         clearTimeout(state.idTimeout);
         delay(0)
-            .then((res) => delay(400).then(() => {
+            .then((res) => delay(450).then(() => {
                 dispatch({
                     type: 'SET_REMOVE',
                     remove: {
