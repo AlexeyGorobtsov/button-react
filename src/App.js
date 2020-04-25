@@ -11,6 +11,7 @@ import {MdList} from "./components/md-list";
 import {OutsideClickEvent} from "./components/OutsideClickEvent";
 import {MdPanel} from "./components/md-panel";
 import {Timeline} from "./components/timeline";
+import {Message} from "./components/message";
 
 export default function App() {
     const [isToggle, setToggle] = useState(false);
@@ -55,9 +56,10 @@ export default function App() {
             </div>
             <Timeline steps={[
                 {step: 'Выберите модель', done: 'vcv-step-done'},
-                {step: 'Заполните форму', done: 'vcv-step-done'},
-                {step: 'Отправьте данные', done: 'vcv-step-done'},
+                {step: 'Заполните форму', done: ''},
+                {step: 'Отправьте данные', done: ''},
             ]}/>
+            <Message messages={['Action in progress..', 'Some time...']}/>
         </div>
     );
 }
