@@ -12,6 +12,7 @@ import {OutsideClickEvent} from "./components/OutsideClickEvent";
 import {MdPanel} from "./components/md-panel";
 import {Timeline} from "./components/timeline";
 import {Message} from "./components/message";
+import {MdSwitch} from "./components/md-switch";
 
 export default function App() {
     const [isToggle, setToggle] = useState(false);
@@ -59,7 +60,10 @@ export default function App() {
                 {step: 'Заполните форму', done: ''},
                 {step: 'Отправьте данные', done: ''},
             ]}/>
-            <Message messages={['Action in progress..', 'Some time...']}/>
+            <Message messages={['Action in progress..']}/>
+            <div className="flex">
+                <MdSwitch label={'Hello world!'}/>
+            </div>
         </div>
     );
 }
