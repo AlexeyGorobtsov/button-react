@@ -8,11 +8,12 @@ import {IconButton} from "./components/md-icon-button";
 import {MdCheckbox} from "./components/checkbox";
 import {MdTooltip} from "./components/md-tooltip";
 import {MdList} from "./components/md-list";
-import {OutsideClickEvent} from "./components/OutsideClickEvent";
+import {OutsideClickEvent} from "./components/outside-click-event";
 import {MdPanel} from "./components/md-panel";
 import {Timeline} from "./components/timeline";
 import {Message} from "./components/message";
 import {MdSwitch} from "./components/md-switch";
+import {CanvasCaptcha} from "./components/canvas/";
 
 export default function App() {
     const [isToggle, setToggle] = useState(false);
@@ -46,7 +47,7 @@ export default function App() {
                 <MenuToggle/>
                 <MenuToggle/>
             </div>
-            <Sidenav isToggle={isToggle}/>
+            {/*<Sidenav isToggle={isToggle}/>*/}
             <div className={'wrap-checkbox'}>
                 <MdCheckbox/>
             </div>
@@ -64,6 +65,7 @@ export default function App() {
             <div className="flex">
                 <MdSwitch label={'Hello world!'}/>
             </div>
+            <CanvasCaptcha/>
         </div>
     );
 }

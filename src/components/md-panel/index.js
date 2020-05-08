@@ -1,6 +1,6 @@
 import React, {useReducer, useRef} from 'react';
 import {MdList} from "../md-list";
-import {OutsideClickEvent} from "../OutsideClickEvent";
+import {OutsideClickEvent} from "../outside-click-event";
 import './style.css';
 
 const initialState = {

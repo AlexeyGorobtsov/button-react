@@ -76,7 +76,7 @@ export function MdItem(props) {
         scaled = {},
     } = state;
 
-    function handleMouseDown(e) {
+    async function handleMouseDown(e) {
         const ripple = btnRef.current;
         const pos = ripple.getBoundingClientRect();
         const styleEl = {
@@ -86,40 +86,37 @@ export function MdItem(props) {
             left: `${e.pageX - pos.left}px`
         };
         dispatch({type: 'SET_MD_RIPPLE_STYLE', style: styleEl});
-        delay(0)
-            .then(() => dispatch({
-                type: 'SET_SCALED',
-                scaled: {[id]: 'md-ripple-scaled'}
-            }))
-            .then(() => dispatch({
-                type: 'SET_ACTIVE',
-                active: {
-                    [id]: 'md-ripple-active'
-                }
-            }))
+        await delay(0);
+        dispatch({
+            type: 'SET_SCALED',
+            scaled: {[id]: 'md-ripple-scaled'}
+        });
+        dispatch({
+            type: 'SET_ACTIVE',
+            active: {
+                [id]: 'md-ripple-active'
+            }
+        })
     }
 
-    function handleMouseUp() {
+    async function handleMouseUp() {
         clearTimeout(state.idTimeout);
-        delay(0)
-            .then((res) => delay(450).then(() => {
-                dispatch({
-                    type: 'SET_REMOVE',
-                    remove: {
-                        [id]: 'md-ripple-remove'
-                    }
-                });
-            }))
-            .then((res) => dispatch({type: 'SET_ACTIVE', active: {[id]: ''}}));
+        const idTimeout = setTimeout(function () {
+            dispatch({type: 'RESET'})
+        }, 600);
+        dispatch({type: 'MD_LIST_UPDATE', payload: {idTimeout}});
+        await delay(450);
+        dispatch({
+            type: 'SET_REMOVE',
+            remove: {
+                [id]: 'md-ripple-remove'
+            }
+        });
+        dispatch({type: 'SET_ACTIVE', active: {[id]: ''}});
         dispatch({
             type: 'MD_LIST_UPDATE',
             payload: {id: id + 1}
         });
-
-        const idTimeout = setTimeout(function () {
-            dispatch({type: 'RESET'})
-        }, 600);
-        dispatch({type: 'MD_LIST_UPDATE', payload: {idTimeout}})
     }
 
     return (
