@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import className from "classnames";
-import {useMdTooltip} from "../use-md-tootltip";
+import {useMdTooltip} from "../../hooks/use-md-tootltip";
+import {MdTooltipContainer} from "../md-tooltip-container";
 
 
 export function MdTooltip(props) {
@@ -26,24 +27,13 @@ export function MdTooltip(props) {
         >
             {children}
         </span>
-            <div
-                className={className('md-panel-outer-wrapper')}
-                style={{pointerEvents: "none", zIndex: 100}}>
-                <div
-                    ref={tooltipRef}
-                    className={className(
-                        'md-panel md-tooltip md-show-add',
-                        tooltipClass,
-                        {'md-origin-top': position === 'top'},
-                        {'md-origin-left': position === 'left'},
-                        {'md-origin-bottom': position === 'bottom'},
-                        {'md-origin-right': position === 'right'}
-                    )}
-                    role="tooltip"
-                    style={tooltipStyle}>
-                    {tooltipLabel}
-                </div>
-            </div>
+        <MdTooltipContainer
+            position={position}
+            tooltipRef={tooltipRef}
+            tooltipLabel={tooltipLabel}
+            tooltipStyle={tooltipStyle}
+            tooltipClass={tooltipClass}
+        />
         </>
     )
 }

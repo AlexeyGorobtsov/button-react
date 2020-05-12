@@ -1,6 +1,5 @@
 import React, {useReducer, useRef} from 'react';
 
-import './style.css'
 
 const initialState = {
     tooltipStyle: {},

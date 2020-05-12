@@ -35,7 +35,6 @@ export function MdPanel(props) {
         offsetLeft = 0,
         list = [],
     } = props;
-    const [mdPanel, setClassName] = ('md-panel-hidden');
 
 
     function handleMouseDown(e) {

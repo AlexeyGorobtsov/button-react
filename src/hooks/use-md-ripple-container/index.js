@@ -1,5 +1,4 @@
 import React, {useEffect, useReducer, useRef} from 'react';
-import './style.css'
 
 const initialState = {
     id: 0,

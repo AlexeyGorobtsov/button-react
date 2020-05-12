@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import './style.css'
 import className from "classnames";
-import {useMdRippleContainer} from "../use-md-ripple-container";
+import {useMdRippleContainer} from "../../hooks/use-md-ripple-container";
+import {MdRippleContainer} from "../md-ripple-container";
 
 const emptyObj = {};
 
@@ -40,17 +41,13 @@ export function MdSwitch(props) {
                 <div className="md-bar"/>
                 <div className="md-thumb-container">
                     <div className="md-thumb md-ink-ripple">
-                        <div className="md-ripple-container" ref={divRef}>
-                            {mdRipple.map((el, i) => <div
-                                key={i}
-                                className={className(`md-ripple md-ripple-placed`,
-                                    scaled[i],
-                                    remove[i],
-                                    active[i]
-                                )}
-                                style={{...el, background: '#000', borderColor: '#000'}}
-                            />)}
-                        </div>
+                        <MdRippleContainer
+                            mdRipple={mdRipple}
+                            remove={remove}
+                            active={active}
+                            scaled={scaled}
+                            divRef={divRef}
+                        />
                     </div>
                 </div>
             </div>
