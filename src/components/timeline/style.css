@@ -40,6 +40,10 @@
 .vcv-timeline-item:last-of-type {
     flex: 0 0 120px;
 }
+
+.vcv-timeline-item span {
+    text-align: center;
+}
 .vcv-timeline-item:last-of-type::after {
     display: none;
 }
@@ -60,7 +64,7 @@
         position: relative;
     }
     .vcv-timeline-item span {
-        text-align: left;
+        text-align: center;
         margin: 10px 0 0;
         position: absolute;
         top: 30px;

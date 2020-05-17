@@ -1,49 +1,35 @@
 import React, {useRef, useEffect} from 'react';
-import {useCtx, useRect} from "./hooks";
-
-import animals from './images/animals.png';
-import {drawImage, getRect} from "./helpers";
+import {useCtx, useRect, useCanvasText} from "./hooks";
+import {drawImage} from "./helpers";
+import animals from "./images/d.png"
 
 export function CanvasCaptcha(props) {
+    const {
+        texts = []
+    } = props;
     const canvasRef = useRef(null);
-    const [ctx] = useCtx({src: animals, canvasRef});
     const canvas = canvasRef.current;
     const {offsetX, offsetY} = useRect({canvas});
-
+    const [preparedText] = useCanvasText({canvasRef, texts});
+    const [ctx] = useCtx({canvasRef, texts: preparedText});
 
     let startX;
     let startY;
-    const texts = [];
-    const y = texts.length * 20 + 20;
-
-    const text = {
-        text: 'Hello world!',
-        x: 20,
-        y: y
-    };
-    if (ctx) {
-        ctx.font = "16px verdana";
-        text.width = ctx.measureText(text.text).width;
-        text.height = 16;
-
-        texts.push(text);
-        draw();
-    }
 
     let selectedText = -1;
 
+
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        texts.forEach(item => ctx.fillText(item.text, item.x, item.y));
-        drawImage({src: animals, ctx, texts });
+        drawImage({src: animals, ctx, texts: preparedText});
     }
 
     function textHittest(x, y, textIndex) {
-        const text = texts[textIndex];
+        const text = preparedText[textIndex];
         return (x >= text.x && x <= text.x + text.width && y >= text.y - text.height && y <= text.y);
     }
 
-    function handleMouseDown(e) {
+    function mouseDown(e) {
         e.preventDefault();
         startX = parseInt(e.clientX - offsetX);
         startY = parseInt(e.clientY - offsetY);
@@ -55,17 +41,17 @@ export function CanvasCaptcha(props) {
         }
     }
 
-    function handleMouseUp(e) {
+    function mouseUp(e) {
         e.preventDefault();
         selectedText = -1;
     }
 
-    function handleMouseOut(e) {
+    function mouseOut(e) {
         e.preventDefault();
         selectedText = -1;
     }
 
-    function handleMouseMove(e) {
+    function mouseMove(e) {
         if (selectedText < 0) {
             return;
         }
@@ -79,22 +65,21 @@ export function CanvasCaptcha(props) {
         startX = mouseX;
         startY = mouseY;
 
-        const text = texts[selectedText];
+        const text = preparedText[selectedText];
         text.x += dx;
         text.y += dy;
         draw();
     }
-
 
     return (
         <canvas
             ref={canvasRef}
             width={800}
             height={800}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-            onMouseOut={handleMouseOut}
+            onMouseDown={mouseDown}
+            onMouseUp={mouseUp}
+            onMouseMove={mouseMove}
+            onMouseOut={mouseOut}
         />
     )
 }

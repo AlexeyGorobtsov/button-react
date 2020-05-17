@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./styles.css";
 import {Button} from "./components/button";
 import {MdToggleArrow} from "./components/md-toggle-arrow";
@@ -14,13 +14,30 @@ import {Timeline} from "./components/timeline";
 import {Message} from "./components/message";
 import {MdSwitch} from "./components/md-switch";
 import {CanvasCaptcha} from "./components/canvas/";
+import {MdInput} from "./components/md-input";
+import {Badge} from "./components/badge";
+import {useObservable} from "./hooks/use-observable.js";
+
+const arr = [
+    'test1',
+    'test2',
+    'test3',
+    'test4',
+    'test5',
+    'test6',
+    'test7',
+];
 
 export default function App() {
     const [isToggle, setToggle] = useState(false);
+    const [texts, setTexts] = useState([]);
+    const [input, setInput] = useState('');
+    // const [observableData] = useObservable(arr, 1000);
+
     return (
         <div className="App">
             <h1>Hello CodeSandbox</h1>
-            <div>
+            <div className="flex-b">
                 <MdPanel
                     offsetLeft={8}
                     list={['item1', 'item2', 'item3']}
@@ -37,7 +54,8 @@ export default function App() {
             <MdTooltip
                 tooltipLabel={'Hello world'}
                 isEllipses
-            ><span>Hello world!</span>
+            >
+                <span>Hello world!</span>
             </MdTooltip>
             <IconButton tooltipLabel={'Hello world!'} position={'top'}>Yes</IconButton>
             <IconButton tooltipLabel={'Hello world!'} position={'left'}>Yes</IconButton>
@@ -62,10 +80,33 @@ export default function App() {
                 {step: 'Отправьте данные', done: ''},
             ]}/>
             <Message messages={['Action in progress..']}/>
-            <div className="flex">
+            <div className="flex-b">
                 <MdSwitch label={'Hello world!'}/>
+                <div style={{width: '60px', position: 'relative'}}>
+                    <Badge label={12}/>
+                </div>
             </div>
-            <CanvasCaptcha/>
+            <div className="flex-b">
+                <MdInput label="Captcha"/>
+                {/*<ul>*/}
+                {/*    {observableData.map((item) => <li>{item}</li>)}*/}
+                {/*</ul>*/}
+
+            </div>
+            <div className="container-canvas">
+                <div className="row">
+                    <div className="wrap-btn">
+                        <MdInput label="Captcha" events={{onChange: (e) => setInput(e.target.value)}}/>
+                        <Button
+                            mdRaised
+                            events={{onClick:() => setTexts([...texts, input])}}
+                        >
+                            Draw text
+                        </Button>
+                    </div>
+                    <CanvasCaptcha texts={texts}/>
+                </div>
+            </div>
         </div>
     );
 }
