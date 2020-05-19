@@ -23,5 +23,5 @@ export function drawImage({src, ctx, texts = []}) {
         ctx.drawImage(ref.image, 0, 0);
         texts.forEach(item => ctx.fillText(item.text, item.x, item.y));
     }
-     draw();
+    draw();
 }

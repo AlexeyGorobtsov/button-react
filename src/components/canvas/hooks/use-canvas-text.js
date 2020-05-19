@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-export function useCanvasText({canvasRef, texts}) {
+export function useCanvasText({canvasRef, texts, init}) {
     const [preparedText, setText] = useState([]);
     useEffect(() => {
         const canvas = canvasRef.current;

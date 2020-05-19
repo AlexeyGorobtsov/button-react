@@ -5,12 +5,13 @@ import animals from "./images/d.png"
 
 export function CanvasCaptcha(props) {
     const {
-        texts = []
+        texts = [],
+        init = []
     } = props;
     const canvasRef = useRef(null);
     const canvas = canvasRef.current;
     const {offsetX, offsetY} = useRect({canvas});
-    const [preparedText] = useCanvasText({canvasRef, texts});
+    const [preparedText] = useCanvasText({canvasRef, texts, init});
     const [ctx] = useCtx({canvasRef, texts: preparedText});
 
     let startX;
@@ -34,11 +35,11 @@ export function CanvasCaptcha(props) {
         startX = parseInt(e.clientX - offsetX);
         startY = parseInt(e.clientY - offsetY);
         // Put your mousedown stuff here
-        for (var i = 0; i < texts.length; i++) {
-            if (textHittest(startX, startY, i)) {
+        texts.forEach((item, i) => {
+            if(textHittest(startX, startY, i)){
                 selectedText = i;
             }
-        }
+        })
     }
 
     function mouseUp(e) {

@@ -16,6 +16,7 @@ import {MdSwitch} from "./components/md-switch";
 import {CanvasCaptcha} from "./components/canvas/";
 import {MdInput} from "./components/md-input";
 import {Badge} from "./components/badge";
+import {GMSearch} from './components/gm-search';
 import {useObservable} from "./hooks/use-observable.js";
 
 const arr = [
@@ -86,6 +87,11 @@ export default function App() {
                     <Badge label={12}/>
                 </div>
             </div>
+            <div className="gm-container">
+                <Button mdRaised>click</Button>
+                <GMSearch placeholder='Search' />
+                <Button mdRaised>click</Button>
+            </div>
             <div className="flex-b">
                 <MdInput label="Captcha"/>
                 {/*<ul>*/}
@@ -99,7 +105,7 @@ export default function App() {
                         <MdInput label="Captcha" events={{onChange: (e) => setInput(e.target.value)}}/>
                         <Button
                             mdRaised
-                            events={{onClick:() => setTexts([...texts, input])}}
+                            events={{onClick:() => setTexts([input])}}
                         >
                             Draw text
                         </Button>
