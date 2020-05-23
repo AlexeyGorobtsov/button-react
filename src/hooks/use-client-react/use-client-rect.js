@@ -1,11 +1,12 @@
 import React, {useState, useCallback} from 'react';
 
-export function useClientRect() {
+export function useClientRect(params) {
+    console.log(params)
     const [rect, setRect] = useState(null);
     const ref = useCallback(node => {
         if (node !== null) {
             setRect(node.getBoundingClientRect());
         }
-    }, []);
+    }, [params]);
     return [rect, ref];
 }

@@ -1,11 +1,12 @@
-import React, {useRef, useEffect, useReducer} from 'react';
+import React, {useRef} from 'react';
 import className from 'classnames';
 
 import {useMdRippleContainer} from "../../hooks/use-md-ripple-container";
-import './style.css';
 import {useMdTooltip} from "../../hooks/use-md-tootltip";
 import {MdRippleContainer} from "../md-ripple-container";
 import {MdTooltipContainer} from "../md-tooltip-container";
+import {isEmpty} from "../../helpers";
+import './style.css';
 
 export function IconButton(props) {
     const {
@@ -15,11 +16,20 @@ export function IconButton(props) {
         cn = {},
         events = {},
         tooltipLabel = '',
-        position = 'top'
+        position = 'top',
+        offset = 0,
+        background,
+        opacity = '.1'
     } = props;
     const btnRef = useRef(null);
+    const isShowTooltip = !isEmpty(tooltipLabel);
     const { mouseDown, mouseUp, stateRipple, divRef } = useMdRippleContainer();
-    const { mouseOut, mouseOver, stateTooltip, tooltipRef } = useMdTooltip({ref: btnRef, position});
+    const { mouseOut, mouseOver, stateTooltip, tooltipRef } = useMdTooltip({
+        ref: btnRef,
+        position,
+        offset,
+        isShow: isShowTooltip
+    });
     const {
         mdRipple = [],
         remove = {},
@@ -48,15 +58,19 @@ export function IconButton(props) {
                 active={active}
                 scaled={scaled}
                 divRef={divRef}
+                background={background}
+                opacity={opacity}
             />
             {children}
-            <MdTooltipContainer
-                position={position}
-                tooltipRef={tooltipRef}
-                tooltipLabel={tooltipLabel}
-                tooltipStyle={tooltipStyle}
-                tooltipClass={tooltipClass}
-            />
+            {!isEmpty(tooltipLabel)
+                ? <MdTooltipContainer
+                    position={position}
+                    tooltipRef={tooltipRef}
+                    tooltipLabel={tooltipLabel}
+                    tooltipStyle={tooltipStyle}
+                    tooltipClass={tooltipClass}
+                />
+            : null}
         </button>
 
     )

@@ -11,6 +11,7 @@ export function MdRippleContainer(props) {
         active = {},
         scaled = {},
         divRef = null,
+        background = '#000',
     } = props;
 
     return(
@@ -22,7 +23,7 @@ export function MdRippleContainer(props) {
                     remove[i],
                     active[i]
                 )}
-                style={{...el, background: '#000', borderColor: '#000'}}
+                style={{...el, background, borderColor: '#000'}}
             />)}
         </div>
     )

@@ -1,14 +1,16 @@
-import React, {useReducer} from 'react';
+import React, {useReducer,useEffect} from 'react';
 
 import {SearchIcon} from "./search-icon";
 import {useClientRect} from "../../hooks/use-client-react/use-client-rect";
+import {useEventListener} from "../../hooks/use-event-listeners/use-event-listener";
 import './style.css';
 
 const initialState = {
     width: '200px',
     style: {},
     focus: '',
-    active: ''
+    active: '',
+    innerWidth: 0
 };
 
 function reducer(state, action) {
@@ -30,16 +32,25 @@ export function GMSearch(props) {
         placeholder = '',
         cn = '',
         button = null,
-        events = {}
+        events = {},
     } = props;
-    const [rect, ref] = useClientRect();
     const [state, dispatch] = useReducer(reducer, initialState);
+
     const {
         width,
         style,
         focus,
-        active
+        active,
+        innerWidth
     } = state;
+
+    function resize() {
+        const payload = {innerWidth: window.innerWidth};
+        dispatch({type: 'GM_SEARCH_UPDATE', payload})
+    }
+
+    useEventListener('resize', resize);
+    const [rect, ref] = useClientRect(innerWidth);
 
     function onFocus(e) {
         const initialWidth = `${e.target.clientWidth}px`;
@@ -75,7 +86,7 @@ export function GMSearch(props) {
                 <div className="search-box">
                     <input
                         type="text"
-                        className={`search-field ${focus}`}
+                        className={`search-field ${focus} ${cn}`}
                         placeholder={placeholder}
                         onFocus={onFocus}
                         onBlur={onBlur}

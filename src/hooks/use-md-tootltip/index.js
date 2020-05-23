@@ -20,10 +20,11 @@ function reducer(state, action) {
     }
 }
 
-export function useMdTooltip({ref, position}) {
+export function useMdTooltip({ref, position, offset = 0, isShow = true,}) {
     const tooltipRef = useRef(null);
     const [stateTooltip, dispatch] = useReducer(reducer, initialState);
     function mouseOver() {
+        if (!isShow) return;
         const btn = ref.current;
         const pos = btn.getBoundingClientRect();
         const tooltip = tooltipRef.current;
@@ -60,6 +61,7 @@ export function useMdTooltip({ref, position}) {
     }
 
     function mouseOut() {
+        if (!isShow) return;
         dispatch({type: 'MD_TOOLTIP_UPDATE', payload: {tooltipClass: 'md-hide'}})
     }
 
