@@ -1,84 +1,21 @@
-import React, {useState, useReducer} from 'react';
+import React from 'react';
 
 import {IconButton} from "../../components/md-icon-button";
 import {Menu} from "./svg/menu";
 import {BackBurger} from "./svg/back-burger";
-import {delay } from '../../helpers'
+import {useDrawer} from "../../hooks/use-drawer";
+import {Drawer} from "../../components/drawer/Drawer";
 import './style.css'
 
-const initialState = {
-    open: 'mdc-drawer--open',
-    closing: '',
-    animate: '',
-    opening: '',
-    isOpen: true
-};
-
-function reducer(state, action) {
-    switch(action.type) {
-        case 'MD_DRAWER_UPDATE': {
-            return {
-                ...state,
-                ...action.payload
-            }
-        }
-        default : {
-            return state;
-        }
-    }
-}
-
-
-export function Drawer(props) {
-    const [state, dispatch] = useReducer(reducer, initialState);
+export function DrawerPage(props) {
     const {
         opening,
         closing,
         animate,
         open,
-        isOpen
-    } = state;
-
-    async function menuClick() {
-        if(isOpen) {
-            await dispatch({
-                type: 'MD_DRAWER_UPDATE',
-                payload: { closing: 'mdc-drawer--closing'}
-            });
-            await delay(120);
-            dispatch({
-                type: 'MD_DRAWER_UPDATE',
-                payload: {open: ''}
-            });
-            return dispatch({
-                type: 'MD_DRAWER_UPDATE',
-                payload: {isOpen: false, closing: ''}
-            })
-        }
-        dispatch({
-            type: 'MD_DRAWER_UPDATE',
-            payload: {open: 'mdc-drawer--open'}
-        });
-        dispatch({
-            type: 'MD_DRAWER_UPDATE',
-            payload: {animate: 'mdc-drawer--animate'}
-        });
-        await delay(80);
-        dispatch({
-            type: 'MD_DRAWER_UPDATE',
-            payload: {opening: 'mdc-drawer--opening'}
-        });
-        await delay(120);
-        await dispatch({
-            type: 'MD_DRAWER_UPDATE',
-            payload: {animate: ''}
-        });
-        return  dispatch({
-            type: 'MD_DRAWER_UPDATE',
-            payload: {isOpen: true, opening: ''}
-        })
-
-    }
+        isOpen,
+        menuClick
+    } = useDrawer();
     return (
         <div className="drawer-container">
             <header className="mdc-top-app-bar drawer-top-app-bar">
@@ -89,7 +26,6 @@ export function Drawer(props) {
                                 onClick: menuClick
                             }}
                             background={'rgb(250,250,250)'}
-                            opacity={'.2'}
                         >
                             {!isOpen ? <Menu /> : <BackBurger />}
                         </IconButton>
@@ -97,23 +33,12 @@ export function Drawer(props) {
                     </section>
                 </div>
             </header>
-            <aside className={
-                `mdc-drawer mdc-drawer--dismissible ${opening} ${animate} ${closing} ${open}`
-            }>
-                <div className="mdc-drawer__content">
-                    <nav className="mdc-list">
-                        <ul>
-                            <li className="active">some item</li>
-                            <li>some item</li>
-                            <li>some item</li>
-                            <li>some item</li>
-                            <li>some item</li>
-                            <li>some item</li>
-                            <li>some item</li>
-                        </ul>
-                    </nav>
-                </div>
-            </aside>
+            <Drawer
+                opening={opening}
+                animate={animate}
+                closing={closing}
+                open={open}
+            />
             <div className="mdc-drawer-app-content">
                 <div className="drawer-main-content">
                     <div className="mdc-top-app-bar--fixed-adjust"/>

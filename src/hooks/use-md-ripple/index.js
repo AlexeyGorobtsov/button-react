@@ -58,7 +58,7 @@ function reducer(state, action) {
     }
 }
 
-export function useMdRippleContainer() {
+export function useMdRipple() {
 
     const divRef = useRef(null);
     const [stateRipple, dispatch] = useReducer(reducer, initialState);

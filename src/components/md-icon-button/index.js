@@ -1,9 +1,9 @@
 import React, {useRef} from 'react';
 import className from 'classnames';
 
-import {useMdRippleContainer} from "../../hooks/use-md-ripple-container";
+import {useMdRipple} from "../../hooks/use-md-ripple";
 import {useMdTooltip} from "../../hooks/use-md-tootltip";
-import {MdRippleContainer} from "../md-ripple-container";
+import {MdRipple} from "../md-ripple";
 import {MdTooltipContainer} from "../md-tooltip-container";
 import {isEmpty} from "../../helpers";
 import './style.css';
@@ -23,7 +23,7 @@ export function IconButton(props) {
     } = props;
     const btnRef = useRef(null);
     const isShowTooltip = !isEmpty(tooltipLabel);
-    const { mouseDown, mouseUp, stateRipple, divRef } = useMdRippleContainer();
+    const { mouseDown, mouseUp, stateRipple, divRef } = useMdRipple();
     const { mouseOut, mouseOver, stateTooltip, tooltipRef } = useMdTooltip({
         ref: btnRef,
         position,
@@ -52,7 +52,7 @@ export function IconButton(props) {
             <div className="md-container md-ink-ripple">
                 <div className="md-icon"/>
             </div>
-            <MdRippleContainer
+            <MdRipple
                 mdRipple={mdRipple}
                 remove={remove}
                 active={active}

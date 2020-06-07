@@ -61,6 +61,7 @@ export function useMdTooltip({ref, position, offset = 0, isShow = true,}) {
     }
 
     function mouseOut() {
+        //TODO MouseLeave
         if (!isShow) return;
         dispatch({type: 'MD_TOOLTIP_UPDATE', payload: {tooltipClass: 'md-hide'}})
     }

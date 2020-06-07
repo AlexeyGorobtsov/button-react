@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import './style.css'
 import className from "classnames";
-import {useMdRippleContainer} from "../../hooks/use-md-ripple-container";
-import {MdRippleContainer} from "../md-ripple-container";
+import {useMdRipple} from "../../hooks/use-md-ripple";
+import {MdRipple} from "../md-ripple";
 
 const emptyObj = {};
 
@@ -13,7 +13,7 @@ export function MdSwitch(props) {
         label = null,
     } = props;
 
-    const { mouseDown, mouseUp, stateRipple, divRef } = useMdRippleContainer();
+    const { mouseDown, mouseUp, stateRipple, divRef } = useMdRipple();
 
     const {
         mdRipple = [],
@@ -41,7 +41,7 @@ export function MdSwitch(props) {
                 <div className="md-bar"/>
                 <div className="md-thumb-container">
                     <div className="md-thumb md-ink-ripple">
-                        <MdRippleContainer
+                        <MdRipple
                             mdRipple={mdRipple}
                             remove={remove}
                             active={active}

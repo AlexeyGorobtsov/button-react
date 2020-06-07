@@ -1,0 +1,70 @@
+.captcha-container {
+    overflow: hidden;
+    background: #F5F5F5;
+    height: 300px;
+    width: 100%;
+    position: relative;
+}
+.captcha-img {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+
+.captcha-img:active {
+    cursor: move;
+}
+
+.wrap-button {
+    user-select: none;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 1px 4px -1px;
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    width: 40px;
+    height: 81px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.zoom-in, .zoom-out {
+    background: none;
+    display: block;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    left: 0;
+    color: #6A6A6A;
+    transition: background-color .4s cubic-bezier(.25, .8, .25, 1);
+}
+
+.zoom-hr {
+    position: relative;
+    overflow: hidden;
+    width: 30px;
+    height: 1px;
+    margin: 0 5px;
+    background-color: rgb(230, 230, 230);
+    top: 0;
+}
+
+.zoom-in:focus, .zoom-out:focus {
+    outline: none;
+}
+
+.wrap-button .zoom-in:hover, .wrap-button .zoom-out:hover {
+    background-color: transparent;
+    color: #000;
+}

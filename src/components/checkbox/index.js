@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import className from "classnames";
 
 import './style.css'
-import {useMdRippleContainer} from "../../hooks/use-md-ripple-container";
-import {MdRippleContainer} from "../md-ripple-container";
+import {useMdRipple} from "../../hooks/use-md-ripple";
+import {MdRipple} from "../md-ripple";
 const emptyObj = {};
 
 export function MdCheckbox(props) {
@@ -12,7 +12,7 @@ export function MdCheckbox(props) {
         events = {},
         disabled = false
     } = props;
-    const { mouseDown, mouseUp, stateRipple, divRef } = useMdRippleContainer();
+    const { mouseDown, mouseUp, stateRipple, divRef } = useMdRipple();
 
     const {
         mdRipple = [],
@@ -35,7 +35,7 @@ export function MdCheckbox(props) {
             <div className="md-container md-ink-ripple">
                 <div className="md-icon"/>
             </div>
-            <MdRippleContainer
+            <MdRipple
                 mdRipple={mdRipple}
                 remove={remove}
                 active={active}
