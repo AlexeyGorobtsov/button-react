@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef} from 'react';
 import {useCtx, useRect, useCanvasText} from "./hooks";
 import {drawImage} from "./helpers";
 import animals from "./images/d.png"

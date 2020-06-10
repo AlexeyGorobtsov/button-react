@@ -1,4 +1,4 @@
-.App {
+body {
   font-family: sans-serif;
 }
 
@@ -16,17 +16,6 @@
   display: flex;
   justify-content: center;
   padding: 14px;
-}
-
-.container-canvas {
-  display: flex;
-  justify-content: center;
-}
-
-.wrap-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .gm-container {

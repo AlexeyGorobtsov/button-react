@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import "./styles.css";
 import {Button} from "./components/button";
 import {MdToggleArrow} from "./components/md-toggle-arrow";
@@ -31,13 +31,10 @@ const arr = [
 
 export default function App() {
     const [isToggle, setToggle] = useState(false);
-    const [texts, setTexts] = useState([]);
-    const [input, setInput] = useState('');
     // const [observableData] = useObservable(arr, 1000);
 
     return (
         <div className="App">
-            <h1>Hello CodeSandbox</h1>
             <div className="flex-b">
                 <MdPanel
                     offsetLeft={8}
@@ -52,16 +49,6 @@ export default function App() {
                     </Button>
                 </MdPanel>
             </div>
-            <MdTooltip
-                tooltipLabel={'Hello world'}
-                isEllipses
-            >
-                <span>Hello world!</span>
-            </MdTooltip>
-            <IconButton tooltipLabel={'Hello world!'} position={'top'}>Yes</IconButton>
-            <IconButton tooltipLabel={'Hello world!'} position={'left'}>Yes</IconButton>
-            <IconButton tooltipLabel={'Hello world!'} position={'bottom'}>Yes</IconButton>
-            <IconButton tooltipLabel={'Hello world!'} position={'right'}>Yes</IconButton>
             <div style={{width: '240px', top: 0, right: 0, position: 'absolute'}}>
                 <MenuToggle/>
                 <MenuToggle/>
@@ -98,20 +85,6 @@ export default function App() {
                 {/*    {observableData.map((item) => <li>{item}</li>)}*/}
                 {/*</ul>*/}
 
-            </div>
-            <div className="container-canvas">
-                <div className="row">
-                    <div className="wrap-btn">
-                        <MdInput label="Captcha" events={{onChange: (e) => setInput(e.target.value)}}/>
-                        <Button
-                            mdRaised
-                            events={{onClick:() => setTexts([input])}}
-                        >
-                            Draw text
-                        </Button>
-                    </div>
-                    <CanvasCaptcha texts={texts}/>
-                </div>
             </div>
         </div>
     );

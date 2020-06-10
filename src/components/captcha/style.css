@@ -5,14 +5,19 @@
     width: 100%;
     position: relative;
 }
+
 .captcha-img {
     cursor: pointer;
     position: absolute;
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     top: 50%;
     transform: translate(-50%, -50%);
     left: 50%;
+}
+
+.captcha-full-size {
+    height: auto
 }
 
 .captcha-img:active {

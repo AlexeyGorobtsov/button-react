@@ -1,7 +1,6 @@
 import React, {useState, useCallback} from 'react';
 
 export function useClientRect(params) {
-    console.log(params)
     const [rect, setRect] = useState(null);
     const ref = useCallback(node => {
         if (node !== null) {
@@ -9,4 +8,5 @@ export function useClientRect(params) {
         }
     }, [params]);
     return [rect, ref];
+
 }

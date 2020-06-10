@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {PlusIcon, MinusIcon} from "./svg";
 
 import './style.css'
@@ -8,6 +8,17 @@ export function Captcha(props) {
         src = ''
     } = props;
     const imgRef = useRef(null);
+    const [className, setClassName] = useState('');
+    useEffect(() => {
+        const image = new Image();
+        image.onload = function () {
+            const height = image.naturalHeight;
+            const width  = image.naturalWidth;
+            const range = width/height;
+            range > 3 ? setClassName('captcha-full-size') : setClassName('');
+        };
+        image.src = src;
+    }, []);
 
     function zoom(zoomIncrement) {
         const img = imgRef.current;
@@ -51,12 +62,14 @@ export function Captcha(props) {
 
     return (
         <div
+            className={className}
             className="captcha-container"
             onMouseMove={mouseMove}
             onMouseUp={mouseUp}
             onMouseOut={mouseOut}
         >
             <img
+                className={`captcha-img ${className}`}
                 src={src}
                 ref={imgRef}
                 onMouseDown={mouseDown}

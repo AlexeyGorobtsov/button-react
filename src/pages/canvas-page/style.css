@@ -1,0 +1,10 @@
+.container-canvas {
+    display: flex;
+    justify-content: center;
+}
+
+.wrap-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
