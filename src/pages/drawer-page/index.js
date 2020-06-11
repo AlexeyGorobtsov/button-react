@@ -38,7 +38,17 @@ export function DrawerPage(props) {
                 animate={animate}
                 closing={closing}
                 open={open}
-            />
+            >
+            <ul>
+                <li className="active">some item</li>
+                <li>some item</li>
+                <li>some item</li>
+                <li>some item</li>
+                <li>some item</li>
+                <li>some item</li>
+                <li>some item</li>
+            </ul>
+            </Drawer>
             <div className="mdc-drawer-app-content">
                 <div className="drawer-main-content">
                     <div className="mdc-top-app-bar--fixed-adjust"/>

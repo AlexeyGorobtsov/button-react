@@ -1,5 +1,9 @@
 body {
   font-family: sans-serif;
+  margin: 0;
+}
+html, body, #root {
+  height: 100%;
 }
 
 .wrap-checkbox {
@@ -22,4 +26,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.app-drawer {
+  padding: 46px 0 0 0;
+}
+
+.app-drawer .menu-toggle {
+  background: #fff;
+}
+
+.side-bar {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }

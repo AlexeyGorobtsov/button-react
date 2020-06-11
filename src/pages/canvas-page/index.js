@@ -12,7 +12,10 @@ export function CanvasPage() {
         <div className="container-canvas">
             <div className="row">
                 <div className="wrap-btn">
-                    <MdInput label="Captcha" events={{onChange: (e) => setInput(e.target.value)}}/>
+                    <MdInput
+                        label="Captcha"
+                        events={{onChange: (e) => setInput(e.target.value)}}
+                    />
                     <Button
                         mdRaised
                         events={{onClick:() => setTexts([input])}}

@@ -7,23 +7,17 @@ export function Drawer(props) {
         opening,
         animate,
         closing,
-        open
+        open,
+        children,
+        cn = ''
     } = props;
     return (
         <aside className={
-            `mdc-drawer mdc-drawer--dismissible ${opening} ${animate} ${closing} ${open}`
+            `mdc-drawer mdc-drawer--dismissible ${opening} ${animate} ${closing} ${open} ${cn}`
         }>
             <div className="mdc-drawer__content">
                 <nav className="mdc-list">
-                    <ul>
-                        <li className="active">some item</li>
-                        <li>some item</li>
-                        <li>some item</li>
-                        <li>some item</li>
-                        <li>some item</li>
-                        <li>some item</li>
-                        <li>some item</li>
-                    </ul>
+                    {children}
                 </nav>
             </div>
         </aside>
