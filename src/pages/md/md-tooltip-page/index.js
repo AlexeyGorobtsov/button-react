@@ -1,6 +1,6 @@
 import React from 'react';
-import {MdTooltip} from "../../components/md-tooltip";
-import {IconButton} from "../../components/md-icon-button";
+import {MdTooltip} from "../../../components/md-tooltip";
+import {IconButton} from "../../../components/md-icon-button";
 
 export function TooltipPage(props) {
     return(

@@ -1,0 +1,16 @@
+.wrap-button-sidenav {
+    display: flex;
+    justify-content: center;
+}
+
+.sidenav-page .md-sidenav {
+    z-index: 1;
+}
+
+.sidenav-page .md-toolbar {
+    padding: 80px 0 0 8px;
+}
+
+.sidenav-page .md-content {
+    padding: 8px;
+}

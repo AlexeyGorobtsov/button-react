@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import './style.css'
-import className from "classnames";
+
 import {useMdRipple} from "../../hooks/use-md-ripple";
 import {MdRipple} from "../md-ripple";
+import './style.css'
 
 const emptyObj = {};
 

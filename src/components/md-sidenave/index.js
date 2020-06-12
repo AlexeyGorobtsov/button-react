@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import './style.css'
 
-export function Sidenav({ isToggle = false }) {
+export function MdSidenav({ isToggle = false }) {
     return (
         <div className={classNames('md-sidenav', {'md-closed': isToggle})}>
             <div className={'md-toolbar'}>

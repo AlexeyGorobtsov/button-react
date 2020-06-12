@@ -10,7 +10,8 @@ export function Button(props) {
         bgRipple = '#212121',
         styleBtn = {},
         cn = {},
-        events = {}
+        events = {},
+        disabled = false,
     } = props;
     const [id, setId] = useState(0);
     const [spanStyle, setSpanStyle] = useState([]);
@@ -45,6 +46,7 @@ export function Button(props) {
             onMouseUp={handleMouseUp}
             ref={btnRef}
             style={styleBtn}
+            disabled={disabled}
             {...events}
         >
             {spanStyle.map((el, i) => <span

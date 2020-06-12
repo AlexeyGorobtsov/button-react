@@ -1,0 +1,13 @@
+.wrap-container {
+    display: flex;
+    justify-content: center;
+}
+
+.wrap-container .row {
+    display: flex;
+    flex: 300px 0;
+}
+
+.wrap-container .md-input-container {
+    width: 100%;
+}
