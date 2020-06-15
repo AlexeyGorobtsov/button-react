@@ -11,6 +11,7 @@ import {MdPaneLPage} from "./pages/md/md-panel-page";
 import {MenuTogglePage} from "./pages/menu-toggle-page";
 import {MdSidenavPage} from "./pages/md/md-side-nave-page";
 import {MdInputPage} from "./pages/md/md-input-page";
+import {MdFabSpeedPage} from "./pages/md/md-fab-speed-page";
 
 export const routes = [
     {
@@ -78,6 +79,12 @@ export const routes = [
                 label: 'Input',
                 icon: null,
                 path: '/md-input'
+            },
+            {
+                component: MdFabSpeedPage,
+                label: 'Fab Speed',
+                icon: null,
+                path: '/fab-speed'
             }
         ]
     },

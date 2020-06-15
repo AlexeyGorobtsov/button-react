@@ -10,7 +10,7 @@ export function MdRipple(props) {
         active = {},
         scaled = {},
         divRef = null,
-        background = '#000',
+        backgroundRipple = '#000',
     } = props;
 
     return(
@@ -24,7 +24,7 @@ export function MdRipple(props) {
                     ${remove[i] || ''}
                     ${active[i] || ''}`
                     }
-                    style={{...el, background, borderColor: '#000'}}
+                    style={{...el, background: backgroundRipple, borderColor: '#000'}}
                 />
             ))}
         </div>

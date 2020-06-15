@@ -19,7 +19,6 @@ export function IconButton(props) {
         position = 'top',
         offset = 0,
         background,
-        opacity = '.1'
     } = props;
     const btnRef = useRef(null);
     const isShowTooltip = !isEmpty(tooltipLabel);
@@ -58,8 +57,7 @@ export function IconButton(props) {
                 active={active}
                 scaled={scaled}
                 divRef={divRef}
-                background={background}
-                opacity={opacity}
+                backgroundRipple={background}
             />
             {children}
             {!isEmpty(tooltipLabel)
