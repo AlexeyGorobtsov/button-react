@@ -12,6 +12,8 @@ import {MenuTogglePage} from "./pages/menu-toggle-page";
 import {MdSidenavPage} from "./pages/md/md-side-nave-page";
 import {MdInputPage} from "./pages/md/md-input-page";
 import {MdFabSpeedPage} from "./pages/md/md-fab-speed-page";
+import {WhyDidYouUpdatePage} from "./pages/common-page/why-did-you-update-page";
+import {MaskUUID} from "./pages/common-page/mask-UUID";
 
 export const routes = [
     {
@@ -48,7 +50,21 @@ export const routes = [
         component: CommonPage,
         label: 'Common',
         icon: null,
-        path: '/common'
+        path: '/common',
+        children: [
+            {
+                component: WhyDidYouUpdatePage,
+                label: 'Why did you update)',
+                icon: null,
+                path: '/common/why-did-you-update'
+            },
+            {
+                component: MaskUUID,
+                label: 'Mask UUID',
+                icon: null,
+                path: '/common/mask-uuid'
+            }
+        ]
     },
     {
         component: null,

@@ -32,12 +32,12 @@
     flex-direction: row;
 }
 
-.md-button.md-warn.md-fab, .md-button.md-default-theme.md-warn.md-raised, .md-button.md-warn.md-raised {
+.md-warn.md-fab, .md-default-theme.md-warn.md-raised, .md-warn.md-raised {
     color: rgb(255,255,255);
     background-color: rgb(255,87,34);
 }
 
-.md-button.md-fab {
+.md-fab {
     display: flex;
     justify-content: center;
     z-index: 20;
@@ -58,7 +58,7 @@
     transition-property: background-color,box-shadow,transform,-webkit-transform;
 }
 
-.md-fab.md-button:not(disablde):hover{
+.md-fab:not(disablde):hover{
     background: #000c17;
 }
 
@@ -89,14 +89,16 @@
     -webkit-transition: all .3s cubic-bezier(.55,0,.55,.2);
     transition: all .3s cubic-bezier(.55,0,.55,.2);
 }
-
-.md-button.md-fab.md-mini {
+.md-fab.md-mini {
     line-height: 40px;
     width: 40px;
     height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.md-button.md-raised:not([disabled]) {
+.md-raised:not([disabled]) {
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 }
 .md-fab .md-ripple.md-ripple-active {
