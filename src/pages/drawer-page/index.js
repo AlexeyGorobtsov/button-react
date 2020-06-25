@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {IconButton} from "../../components/md-icon-button";
+import {MdIconButton} from "../../components/md-icon-button";
 import {Menu} from "./svg/menu";
 import {BackBurger} from "./svg/back-burger";
 import {useDrawer} from "../../hooks/use-drawer";
@@ -21,14 +21,14 @@ export function DrawerPage(props) {
             <header className="mdc-top-app-bar drawer-top-app-bar">
                 <div className="mdc-top-app-bar__row">
                     <section className="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-                        <IconButton
+                        <MdIconButton
                             events={{
                                 onClick: menuClick
                             }}
                             background={'rgb(250,250,250)'}
                         >
                             {!isOpen ? <Menu /> : <BackBurger />}
-                        </IconButton>
+                        </MdIconButton>
                         <span className="mdc-top-app-bar__title">Dismissible Drawer</span>
                     </section>
                 </div>

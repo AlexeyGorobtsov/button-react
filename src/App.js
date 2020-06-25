@@ -1,15 +1,15 @@
-import React, {useState} from "react";
-import {Button} from "./components/button";
-import {MdToggleArrow} from "./components/md-toggle-arrow";
+import React from "react";
+
 import {MenuToggle} from "./components/menu-toggle";
-import {Sidenav} from "./components/md-sidenave";
-import {IconButton} from "./components/md-icon-button";
+import {MdIconButton} from "./components/md-icon-button";
 import {Drawer} from "./components/drawer/Drawer";
 import {routes} from "./routs";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {useDrawer} from "./hooks/use-drawer";
 import {Menu} from "./pages/drawer-page/svg/menu";
 import {BackBurger} from "./pages/drawer-page/svg/back-burger";
+import {Header} from "./common-components/header";
+import {InfoContent} from "./container/info-components";
 import './styles.css';
 
 export default function App() {
@@ -25,21 +25,10 @@ export default function App() {
 
     return (
         <div className="App">
-            <header className="mdc-top-app-bar drawer-top-app-bar">
-                <div className="mdc-top-app-bar__row">
-                    <section className="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-                        <IconButton
-                            events={{
-                                onClick: menuClick
-                            }}
-                            background={'rgb(250,250,250)'}
-                        >
-                            {!isOpen ? <Menu/> : <BackBurger/>}
-                        </IconButton>
-                        <span className="mdc-top-app-bar__title">Dismissible Drawer</span>
-                    </section>
-                </div>
-            </header>
+            <Header
+                menuClick={menuClick}
+                isOpen={isOpen}
+            />
             <Router>
                 <Drawer
                     opening={opening}
@@ -76,9 +65,9 @@ export default function App() {
                                         path={item.path}
                                         component={item.component}
                                     />
-
                                 })
                             }
+                            <InfoContent/>
                         </div>
                     </div>
                         </>

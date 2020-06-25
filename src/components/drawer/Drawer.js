@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './style.css'
+import {useDrawer} from "../../hooks/use-drawer";
 
 export function Drawer(props) {
     const {
@@ -11,6 +12,8 @@ export function Drawer(props) {
         children,
         cn = ''
     } = props;
+
+    console.log('header');
     return (
         <aside className={
             `mdc-drawer mdc-drawer--dismissible ${opening} ${animate} ${closing} ${open} ${cn}`

@@ -1,11 +1,36 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { connect } from 'react-redux'
+
 import {MdInput} from "../../../components/md-input";
-
-import './style.css';
 import {Button} from "../../../components/button";
+import {delay} from "../../../helpers";
+import './style.css';
 
-export function MdInputPage(props) {
+export function MdInputComponent(props) {
+    const {
+        dispatch = () => console.log('dispatch'),
+    } = props;
     const [disabledInput, setDisabled] = useState({});
+
+    useEffect(() => {
+        delay(400)
+            .then(() => dispatch({
+            type: 'TOAST_UPDATE',
+            payload: {
+                isOpen: true,
+                content: 'Input toast'
+            }
+        }));
+
+        return () => {
+            dispatch({
+                type: 'TOAST_UPDATE',
+                payload: {
+                    isOpen: false,
+                }
+            })
+        }
+    }, []);
 
     function validation(str, label) {
         const isValid = isNaN(Number(str));
@@ -30,3 +55,5 @@ export function MdInputPage(props) {
 
     )
 }
+
+export const MdInputPage = connect()(MdInputComponent);

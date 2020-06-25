@@ -14,6 +14,7 @@ import {MdInputPage} from "./pages/md/md-input-page";
 import {MdFabSpeedPage} from "./pages/md/md-fab-speed-page";
 import {WhyDidYouUpdatePage} from "./pages/common-page/why-did-you-update-page";
 import {MaskUUID} from "./pages/common-page/mask-UUID";
+import {MdToastPage} from "./pages/md/md-toast-page";
 
 export const routes = [
     {
@@ -101,6 +102,12 @@ export const routes = [
                 label: 'Fab Speed',
                 icon: null,
                 path: '/fab-speed'
+            },
+            {
+                component: MdToastPage,
+                label: 'Toast',
+                icon: null,
+                path: '/md-toast'
             }
         ]
     },

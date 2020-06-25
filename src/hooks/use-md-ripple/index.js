@@ -70,9 +70,8 @@ export function useMdRipple() {
     useEffect(() => {
         return () => {
             clearTimeout(idTimeout);
-            dispatch({type: 'RESET'})
         }
-    }, []);
+    }, [idTimeout]);
 
     async function mouseDown() {
         const ripple = divRef.current;

@@ -8,7 +8,7 @@ import {MdTooltipContainer} from "../md-tooltip-container";
 import {isEmpty} from "../../helpers";
 import './style.css';
 
-export function IconButton(props) {
+export function MdIconButton(props) {
     const {
         children = null,
         mdRaised = false,

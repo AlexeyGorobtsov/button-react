@@ -18,8 +18,10 @@ export function Button(props) {
     const btnRef = useRef(null);
 
     useEffect(() => {
-        return () => clearTimeout(id)
-    }, []);
+        return () => {
+            clearTimeout(id)
+        }
+    }, [id]);
 
     function handleMouseDown(e) {
         const ripple = btnRef.current;
@@ -37,6 +39,7 @@ export function Button(props) {
             setSpanStyle([]);
         }, 2000);
         setId(idTimeout)
+        console.log({idTimeout})
     }
 
     return (
