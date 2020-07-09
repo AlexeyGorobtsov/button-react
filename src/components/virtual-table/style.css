@@ -1,0 +1,4 @@
+.scroll-box {
+    overflow: auto;
+    height: 300px;
+}

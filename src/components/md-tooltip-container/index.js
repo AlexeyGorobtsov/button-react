@@ -11,7 +11,11 @@ export function MdTooltipContainer(props) {
         tooltipLabel = '',
         tooltipStyle = {},
         tooltipClass = '',
+        isShowTooltip = true,
     } = props;
+
+    if (!isShowTooltip) return [];
+
     return (
         <div
             className={className('md-panel-outer-wrapper')}

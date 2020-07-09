@@ -19,11 +19,12 @@ export function MdIconButton(props) {
         position = 'top',
         offset = 0,
         background,
+        disabled = false,
     } = props;
     const btnRef = useRef(null);
-    const isShowTooltip = !isEmpty(tooltipLabel);
-    const { mouseDown, mouseUp, stateRipple, divRef } = useMdRipple();
-    const { mouseOut, mouseOver, stateTooltip, tooltipRef } = useMdTooltip({
+    const isShowTooltip = !isEmpty(tooltipLabel) && !disabled;
+    const {mouseDown, mouseUp, stateRipple, divRef} = useMdRipple();
+    const {mouseOut, mouseOver, stateTooltip, tooltipRef} = useMdTooltip({
         ref: btnRef,
         position,
         offset,
@@ -38,38 +39,40 @@ export function MdIconButton(props) {
     const {tooltipClass, tooltipStyle} = stateTooltip;
 
     return (
-        <button
-            className={className('md-button md-icon-button md-icon', cn, {'md-raised': mdRaised})}
-            onMouseDown={mouseDown}
-            onMouseUp={mouseUp}
-            onMouseOver={mouseOver}
-            onMouseOut={mouseOut}
-            ref={btnRef}
-            style={styleBtn}
-            {...events}
-        >
-            <div className="md-container md-ink-ripple">
-                <div className="md-icon"/>
-            </div>
-            <MdRipple
-                mdRipple={mdRipple}
-                remove={remove}
-                active={active}
-                scaled={scaled}
-                divRef={divRef}
-                backgroundRipple={background}
-            />
-            {children}
-            {!isEmpty(tooltipLabel)
-                ? <MdTooltipContainer
-                    position={position}
-                    tooltipRef={tooltipRef}
-                    tooltipLabel={tooltipLabel}
-                    tooltipStyle={tooltipStyle}
-                    tooltipClass={tooltipClass}
+        <>
+            <button
+                className={className('md-button md-icon-button md-icon', cn, {'md-raised': mdRaised})}
+                onMouseDown={mouseDown}
+                onMouseUp={mouseUp}
+                onMouseOver={mouseOver}
+                onMouseOut={mouseOut}
+                ref={btnRef}
+                style={styleBtn}
+                {...events}
+                disabled={disabled}
+            >
+                <div className="md-container md-ink-ripple">
+                    <div className="md-icon"/>
+                </div>
+                <MdRipple
+                    mdRipple={mdRipple}
+                    remove={remove}
+                    active={active}
+                    scaled={scaled}
+                    divRef={divRef}
+                    backgroundRipple={background}
                 />
-            : null}
-        </button>
+                {children}
+            </button>
+            <MdTooltipContainer
+                position={position}
+                tooltipRef={tooltipRef}
+                tooltipLabel={tooltipLabel}
+                tooltipStyle={tooltipStyle}
+                tooltipClass={tooltipClass}
+                isShowTooltip={isShowTooltip}
+            />
+        </>
 
     )
 }

@@ -15,6 +15,7 @@ import {MdFabSpeedPage} from "./pages/md/md-fab-speed-page";
 import {WhyDidYouUpdatePage} from "./pages/common-page/why-did-you-update-page";
 import {MaskUUID} from "./pages/common-page/mask-UUID";
 import {MdToastPage} from "./pages/md/md-toast-page";
+import {VirtualTablePage} from "./pages/common-page/virtual-page";
 
 export const routes = [
     {
@@ -64,6 +65,12 @@ export const routes = [
                 label: 'Mask UUID',
                 icon: null,
                 path: '/common/mask-uuid'
+            },
+            {
+                component: VirtualTablePage,
+                label: 'Virtual Table',
+                icon: null,
+                path: '/common/virtual-table'
             }
         ]
     },
