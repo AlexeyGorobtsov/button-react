@@ -16,6 +16,7 @@ import {WhyDidYouUpdatePage} from "./pages/common-page/why-did-you-update-page";
 import {MaskUUID} from "./pages/common-page/mask-UUID";
 import {MdToastPage} from "./pages/md/md-toast-page";
 import {VirtualTablePage} from "./pages/common-page/virtual-page";
+import {UseDebouncePage} from "./pages/common-page/use-debounce-page";
 
 export const routes = [
     {
@@ -71,6 +72,12 @@ export const routes = [
                 label: 'Virtual Table',
                 icon: null,
                 path: '/common/virtual-table'
+            },
+            {
+                component: UseDebouncePage,
+                label: 'Use debounce',
+                icon: null,
+                path: '/common/use-debounce'
             }
         ]
     },
