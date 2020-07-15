@@ -1,7 +1,7 @@
 import React from 'react';
 const ref = {};
 
-export function drawImage({src, ctx, texts = []}) {
+export function drawImage({src, ctx, width, height }) {
     if(!ref.isFirst) {
         ref.isFirst = true;
         ref.src = src;
@@ -20,8 +20,7 @@ export function drawImage({src, ctx, texts = []}) {
 
 
     function draw() {
-        ctx.drawImage(ref.image, 0, 0);
-        texts.forEach(item => ctx.fillText(item.text, item.x, item.y));
+        ctx.drawImage(ref.image, 0, 0, width, height);
     }
     draw();
 }

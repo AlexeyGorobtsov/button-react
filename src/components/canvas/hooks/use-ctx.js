@@ -10,7 +10,7 @@ export function useCtx({canvasRef, texts}) {
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.font = "16px verdana";
-        drawImage({src: animals, ctx, texts});
+        // drawImage({src: animals, ctx, texts});
         setCanvasCtx(ctx)
     }, [canvasRef, texts]);
 

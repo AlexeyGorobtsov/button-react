@@ -13,7 +13,6 @@ export function Drawer(props) {
         cn = ''
     } = props;
 
-    console.log('header');
     return (
         <aside className={
             `mdc-drawer mdc-drawer--dismissible ${opening} ${animate} ${closing} ${open} ${cn}`

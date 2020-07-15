@@ -5,6 +5,15 @@
 
 .wrap-btn {
     display: flex;
+    justify-content: space-between;
+}
+
+.wrap-btn-text {
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.button-draw-text {
+    align-self: flex-start;
 }

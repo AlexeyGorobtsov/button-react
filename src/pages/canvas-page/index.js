@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import {CanvasCaptcha} from "../../components/canvas";
+import {CanvasPoly} from "../../components/canvas";
 import {MdInput} from "../../components/md-input";
 import {Button} from "../../components/button";
 import './style.css';
@@ -12,18 +12,23 @@ export function CanvasPage() {
         <div className="container-canvas">
             <div className="row">
                 <div className="wrap-btn">
-                    <MdInput
-                        label="Captcha"
-                        events={{onChange: (e) => setInput(e.target.value)}}
-                    />
-                    <Button
-                        mdRaised
-                        events={{onClick:() => setTexts([input])}}
-                    >
-                        Draw text
-                    </Button>
+                    <div className="wrap-btn-text">
+                        <MdInput
+                            label="Text"
+                            events={{onChange: (e) => setInput(e.target.value)}}
+                        />
+                        <Button
+                            mdRaised
+                            events={{onClick:() => setTexts([input])}}
+                            cn="button-draw-text"
+                        >
+                            Draw text
+                        </Button>
+                    </div>
                 </div>
-                <CanvasCaptcha texts={texts}/>
+                <CanvasPoly
+                    texts={texts}
+                />
             </div>
         </div>
     )

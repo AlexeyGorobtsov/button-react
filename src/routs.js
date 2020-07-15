@@ -15,7 +15,7 @@ import {MdFabSpeedPage} from "./pages/md/md-fab-speed-page";
 import {WhyDidYouUpdatePage} from "./pages/common-page/why-did-you-update-page";
 import {MaskUUID} from "./pages/common-page/mask-UUID";
 import {MdToastPage} from "./pages/md/md-toast-page";
-import {VirtualTablePage} from "./pages/common-page/virtual-page";
+import {LazyTablePage, VirtualTablePage} from "./pages/common-page/lazy-table-page";
 import {UseDebouncePage} from "./pages/common-page/use-debounce-page";
 
 export const routes = [
@@ -68,10 +68,10 @@ export const routes = [
                 path: '/common/mask-uuid'
             },
             {
-                component: VirtualTablePage,
-                label: 'Virtual Table',
+                component: LazyTablePage,
+                label: 'Lazy Table',
                 icon: null,
-                path: '/common/virtual-table'
+                path: '/common/lazy-table'
             },
             {
                 component: UseDebouncePage,

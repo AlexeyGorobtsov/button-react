@@ -1,1 +1,1 @@
-export { CanvasCaptcha } from './CanvasCaptcha'
+export { CanvasPoly } from './CanvasPoly'

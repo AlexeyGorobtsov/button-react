@@ -39,7 +39,6 @@ export function Button(props) {
             setSpanStyle([]);
         }, 2000);
         setId(idTimeout)
-        console.log({idTimeout})
     }
 
     return (
