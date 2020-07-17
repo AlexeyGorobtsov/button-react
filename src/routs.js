@@ -15,8 +15,9 @@ import {MdFabSpeedPage} from "./pages/md/md-fab-speed-page";
 import {WhyDidYouUpdatePage} from "./pages/common-page/why-did-you-update-page";
 import {MaskUUID} from "./pages/common-page/mask-UUID";
 import {MdToastPage} from "./pages/md/md-toast-page";
-import {LazyTablePage, VirtualTablePage} from "./pages/common-page/lazy-table-page";
+import {LazyTablePage} from "./pages/common-page/lazy-table-page";
 import {UseDebouncePage} from "./pages/common-page/use-debounce-page";
+import {DragAndDropColumnTablePage} from "./pages/common-page/drag-and-drop-column-table-page";
 
 export const routes = [
     {
@@ -78,6 +79,12 @@ export const routes = [
                 label: 'Use debounce',
                 icon: null,
                 path: '/common/use-debounce'
+            },
+            {
+                component: DragAndDropColumnTablePage,
+                label: 'Drag and drop table columns',
+                icon: null,
+                path: '/drag-and-drop-table-columns'
             }
         ]
     },

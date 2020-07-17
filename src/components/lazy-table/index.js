@@ -1,8 +1,5 @@
 import React, {useRef, useState, useEffect, useReducer} from 'react';
 
-import {usePrevious} from "../../hooks/usePrevious";
-import {delay} from "../../helpers";
-
 import './style.css';
 
 function newRow(i) {
@@ -41,7 +38,7 @@ const cells = [
     {label: "file", name: "file"}
 ];
 
-const result = makeData(20);
+const result = makeData(200);
 
 function renderRow(row, cells) {
     return cells.map((cell, i) => {
@@ -71,7 +68,6 @@ function Tbody(props) {
 function getChunks(result, num) {
     const len = result.length;
     const numberOfChunk = Math.floor(len / num);
-    console.log(numberOfChunk);
 
     const chunks = {};
     for(let i = 0; i < numberOfChunk; i++) {
@@ -82,8 +78,6 @@ function getChunks(result, num) {
 }
 
 const ch = getChunks(result, 60);
-
-console.log(ch);
 
 
 export function LazyTable(props) {

@@ -1,0 +1,78 @@
+table tr th {
+    border: 1px solid #ddd;
+}
+
+th[draggable] {
+    cursor: move;
+}
+
+.drag {
+    background-color: rgba(0, 0, 0, 0.25);
+    opacity: 0.25;
+}
+
+.over {
+    background-color: rgba(0, 0, 255, 0.35);
+}
+
+
+table th {
+    position: relative;
+    padding: 16px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    table-layout: fixed;
+}
+
+.resizer {
+    z-index: 7;
+    position: absolute;
+    outline: none;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.resizer-hover, .resizer-active {
+    display: block;
+}
+
+.resizer-vertical-handle {
+    width: 5px;
+    cursor: e-resize;
+    background: #4d90fe;
+    height: 20px;
+}
+
+.resizer-handle {
+    position: relative;
+    border-style: none;
+}
+
+.resizer-handle-bar {
+    height: 600px;
+    display: block;
+}
+
+.resizer-active .resizer-vertical-handle-bar {
+    position: absolute;
+    width: 1px;
+    background-color: #4d90fe;
+    left: 2px;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.col-drag {
+    height: 100%;
+    width: 4px;
+    /*background-color: red;*/
+    position: absolute;
+    top: 0;
+    right: 0;
+}
