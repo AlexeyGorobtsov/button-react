@@ -87,7 +87,6 @@ export default function App() {
             {/*        {step: 'Заполните форму', done: ''},*/}
             {/*        {step: 'Отправьте данные', done: ''},*/}
             {/*    ]}/>*/}
-            {/*    <Message messages={['Action in progress..']}/>*/}
             {/*    <div className="flex-b">*/}
             {/*        <MdSwitch label={'Hello world!'}/>*/}
             {/*        <div style={{width: '60px', position: 'relative'}}>*/}

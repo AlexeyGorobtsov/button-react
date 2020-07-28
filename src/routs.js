@@ -18,6 +18,7 @@ import {MdToastPage} from "./pages/md/md-toast-page";
 import {LazyTablePage} from "./pages/common-page/lazy-table-page";
 import {UseDebouncePage} from "./pages/common-page/use-debounce-page";
 import {DragAndDropColumnTablePage} from "./pages/common-page/drag-and-drop-column-table-page";
+import {LabelStudioPage} from "./pages/common-page/label-studio-page";
 
 export const routes = [
     {
@@ -85,6 +86,12 @@ export const routes = [
                 label: 'Drag and drop table columns',
                 icon: null,
                 path: '/drag-and-drop-table-columns'
+            },
+            {
+                component: LabelStudioPage,
+                label: 'Label Studio',
+                icon: null,
+                path: '/label-studio'
             }
         ]
     },
