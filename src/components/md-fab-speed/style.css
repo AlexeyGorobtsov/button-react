@@ -52,10 +52,7 @@
     overflow: hidden;
     -webkit-transition: all .3s cubic-bezier(.55,0,.55,.2);
     transition: all .3s cubic-bezier(.55,0,.55,.2);
-    -webkit-transition-property: background-color,box-shadow,-webkit-transform;
-    transition-property: background-color,box-shadow,-webkit-transform;
     transition-property: background-color,box-shadow,transform;
-    transition-property: background-color,box-shadow,transform,-webkit-transform;
 }
 
 .md-fab:not(disablde):hover{
@@ -107,4 +104,28 @@
 
 .md-fab-speed-dial:not(.md-hover-full) .md-fab-action-item {
     pointer-events: auto;
+}
+
+.md-fab-speed-dial.md-right {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row
+}
+
+.md-fab-speed-dial.md-right .md-fab-trigger {
+    -webkit-box-ordinal-group: 2;
+    order: 1
+}
+
+.md-fab-speed-dial.md-right .md-fab-actions {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-ordinal-group: 3;
+    order: 2
+}
+
+.md-fab-speed-dial.md-right .md-fab-actions .md-fab-action-item {
+    -webkit-transition: all .3s cubic-bezier(.55, 0, .55, .2);
+    transition: all .3s cubic-bezier(.55, 0, .55, .2)
 }

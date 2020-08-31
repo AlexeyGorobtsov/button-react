@@ -34,6 +34,7 @@ function MdFabSpeedComponent(props) {
   return (
       <MdFabSpeed
           backgroundRipple="#fff"
+          position="left"
             mdFabItems={[
                 {
                     component: <Twitter fill="#7d7d7d" />,
