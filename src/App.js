@@ -73,15 +73,6 @@ export default function App() {
                         </>
                 </Switch>
             </Router>
-
-            {/*    <div className={'wrap-checkbox'}>*/}
-            {/*        <MdCheckbox/>*/}
-            {/*    </div>*/}
-            {/*    <div className={"center"}>*/}
-            {/*        <div style={{width: 400}}>*/}
-            {/*            <MdList list={['item1', 'item2', 'item3']}/>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
             {/*    <Timeline steps={[*/}
             {/*        {step: 'Выберите модель', done: 'vcv-step-done'},*/}
             {/*        {step: 'Заполните форму', done: ''},*/}

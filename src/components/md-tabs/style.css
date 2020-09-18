@@ -1,0 +1,238 @@
+.md-tabs {
+    display: block;
+    margin: 0;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.md-tabs[md-border-bottom] .md-tabs-wrapper {
+    border-width: 0 0 1px;
+    border-style: solid;
+    background-color: transparent;
+    border-color: rgba(0,0,0,0.12);
+}
+
+.md-tabs[md-border-bottom] .md-tabs-wrapper {
+    border-width: 0 0 1px;
+    border-style: solid;
+}
+
+.md-tabs .md-tabs-wrapper {
+    background-color: transparent;
+    border-color: rgba(0,0,0,0.12);
+}
+
+.md-tabs-wrapper {
+    display: block;
+    position: relative;
+    transform: translate(0,0);
+}
+
+/*.md-tab-data {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    z-index: -1;*/
+/*    opacity: 0;*/
+/*}*/
+
+/*.md-tab-data.md-tab {*/
+/*    position: absolute;*/
+/*    z-index: -1;*/
+/*    left: -9999px;*/
+/*}*/
+
+.md-tabs-wrapper {
+    display: block;
+    position: relative;
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+}
+
+.md-tabs-canvas {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    height: 48px;
+}
+
+.md-pagination-wrapper {
+    height: 48px;
+    display: -webkit-box;
+    display: flex;
+    transition: transform .5s cubic-bezier(.35,0,.25,1);
+    position: absolute;
+    left: 0;
+    transform: translate(0,0);
+}
+
+.md-tabs .md-tab.md-active {
+    color: rgb(16,108,200);
+}
+
+.md-tab.md-active {
+    cursor: default;
+}
+
+.md-tabs .md-tab {
+    color: rgba(0,0,0,0.54);
+}
+
+.md-tab {
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    padding: 12px 24px;
+    transition: background-color .35s cubic-bezier(.35,0,.25,1);
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    text-transform: uppercase;
+    float: left;
+    font-weight: 500;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.md-tabs.md-dynamic-height .md-tabs-content-wrapper {
+    min-height: 0;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    overflow: visible;
+}
+
+.md-tabs-canvas .md-dummy-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.md-visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    text-transform: none;
+    width: 1px;
+}
+
+.md-tab-content, .md-tabs-content-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.md-tabs-content-wrapper {
+    display: block;
+    top: 48px;
+    overflow: hidden;
+}
+
+.md-tabs.md-dynamic-height .md-tab-content.md-active {
+    position: relative;
+}
+
+.md-tab-content.md-no-scroll {
+    bottom: auto;
+    overflow: hidden;
+}
+
+.md-tab-content {
+    display: -webkit-box;
+    display: flex;
+    top: 0;
+    -webkit-transition: -webkit-transform .5s cubic-bezier(.35,0,.25,1);
+    transition: -webkit-transform .5s cubic-bezier(.35,0,.25,1);
+    transition: transform .5s cubic-bezier(.35,0,.25,1);
+    overflow: auto;
+    transform: translate(0,0);
+}
+
+.md-tab-content>div {
+    -webkit-box-flex: 1;
+    flex: 1 0 100%;
+    min-width: 0;
+}
+
+.md-padding {
+    padding: 8px;
+}
+
+.md-ink-bar.md-left {
+    transition: left .125s cubic-bezier(.35,0,.25,1),right .25s cubic-bezier(.35,0,.25,1);
+}
+
+.md-ink-bar.md-right {
+    -webkit-transition: left .25s cubic-bezier(.35,0,.25,1),right .125s cubic-bezier(.35,0,.25,1);
+    transition: left .25s cubic-bezier(.35,0,.25,1),right .125s cubic-bezier(.35,0,.25,1);
+}
+
+.md-tabs .md-ink-bar {
+    color: rgb(255,82,82);
+    background: rgb(255,82,82);
+}
+
+.md-ink-bar {
+    position: absolute;
+    left: auto;
+    right: auto;
+    bottom: 0;
+    height: 2px;
+}
+
+.md-pagination-wrapper {
+    height: 48px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-transition: -webkit-transform .5s cubic-bezier(.35,0,.25,1);
+    transition: -webkit-transform .5s cubic-bezier(.35,0,.25,1);
+    transition: transform .5s cubic-bezier(.35,0,.25,1);
+    position: absolute;
+    left: 0;
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+}
+
+.md-tab-content.md-right:not(.md-active) {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-animation: 1s md-tab-content-hide;
+    animation: 1s md-tab-content-hide;
+    visibility: hidden;
+}
+
+.md-tab-content.md-right:not(.md-active) * {
+    -webkit-transition: visibility 0s linear;
+    transition: visibility 0s linear;
+    -webkit-transition-delay: .5s;
+    transition-delay: .5s;
+    visibility: hidden;
+}
+
+.md-tab-content.md-left:not(.md-active) {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-animation: 1s md-tab-content-hide;
+    animation: 1s md-tab-content-hide;
+    visibility: hidden;
+}
+
+.md-tab-content.md-left:not(.md-active) * {
+    -webkit-transition: visibility 0s linear;
+    transition: visibility 0s linear;
+    -webkit-transition-delay: .5s;
+    transition-delay: .5s;
+    visibility: hidden;
+}

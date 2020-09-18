@@ -19,6 +19,9 @@ import {LazyTablePage} from "./pages/common-page/lazy-table-page";
 import {UseDebouncePage} from "./pages/common-page/use-debounce-page";
 import {DragAndDropColumnTablePage} from "./pages/common-page/drag-and-drop-column-table-page";
 import {LabelStudioPage} from "./pages/common-page/label-studio-page";
+import {MdCheckboxPage} from "./pages/md/md-checkbox-page";
+import {MdDialogPage} from "./pages/md/md-dialog-page";
+import {MdTabsPage} from "./pages/md/md-tabs-page";
 
 export const routes = [
     {
@@ -106,6 +109,24 @@ export const routes = [
                 label: 'MdPanel',
                 icon: null,
                 path: '/md/md-panel'
+            },
+            {
+                component: MdCheckboxPage,
+                label: 'MdCheckbox',
+                icon: null,
+                path: '/md/md-checkbox'
+            },
+            {
+                component: MdDialogPage,
+                label: 'MdDialog',
+                icon: null,
+                path: '/md/md-dialog'
+            },
+            {
+              component: MdTabsPage,
+              label: 'MdTabs',
+              icon: null,
+              path: '/md/md-tabs'
             },
             {
                 component: TooltipPage,

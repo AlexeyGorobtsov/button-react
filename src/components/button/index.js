@@ -18,9 +18,7 @@ export function Button(props) {
     const btnRef = useRef(null);
 
     useEffect(() => {
-        return () => {
-            clearTimeout(id)
-        }
+        return () => clearTimeout(id)
     }, [id]);
 
     function handleMouseDown(e) {

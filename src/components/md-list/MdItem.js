@@ -11,7 +11,6 @@ const initialState = {
     id: 0,
     idTimeout: 0,
     scaled: {},
-    remove: {},
     active: {},
     mdRipple: [],
     tooltipStyle: {},
@@ -31,12 +30,6 @@ function reducer(state, action) {
                 ...state,
                 scaled: {...state.scaled, ...action.scaled},
                 active: {...state.active, ...action.scaled}
-            }
-        }
-        case 'SET_REMOVE': {
-            return {
-                ...state,
-                remove: {...state.remove, ...action.remove}
             }
         }
         case 'SET_ACTIVE': {
@@ -106,12 +99,6 @@ export function MdItem(props) {
         }, 600);
         dispatch({type: 'MD_LIST_UPDATE', payload: {idTimeout}});
         await delay(450);
-        dispatch({
-            type: 'SET_REMOVE',
-            remove: {
-                [id]: 'md-ripple-remove'
-            }
-        });
         dispatch({type: 'SET_ACTIVE', active: {[id]: ''}});
         dispatch({
             type: 'MD_LIST_UPDATE',
@@ -138,7 +125,6 @@ export function MdItem(props) {
                             key={i}
                             className={className(`md-ripple md-ripple-placed`,
                                 scaled[i],
-                                remove[i],
                                 active[i]
                             )}
                             style={{...el, background: '#000', borderColor: '#000'}}

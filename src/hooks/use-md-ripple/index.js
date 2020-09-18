@@ -1,5 +1,7 @@
 import React, {useEffect, useReducer, useRef} from 'react';
 
+import {delay} from "../../helpers";
+
 const initialState = {
     id: 0,
     idTimeout: 0,
@@ -8,8 +10,6 @@ const initialState = {
     remove: {},
     active: {},
 };
-
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 function reducer(state, action) {
     switch (action.type) {
@@ -58,8 +58,8 @@ function reducer(state, action) {
     }
 }
 
-export function useMdRipple() {
-
+export function useMdRipple(params) {
+    const {isIconRipple = false } = params || {}
     const divRef = useRef(null);
     const [stateRipple, dispatch] = useReducer(reducer, initialState);
     const {
@@ -68,34 +68,53 @@ export function useMdRipple() {
     } = stateRipple;
 
     useEffect(() => {
-        return () => {
-            clearTimeout(idTimeout);
-        }
+        return () => clearTimeout(idTimeout);
+
     }, [idTimeout]);
 
-    async function mouseDown() {
+    async function mouseDown(e) {
         const ripple = divRef.current;
-        const size = ripple.offsetWidth;
-        const styleEl = {
-            width: `${size}px`,
-            height: `${size}px`,
-            top: `${size / 2}px`,
-            left: `${size / 2}px`
-        };
-        await dispatch({type: 'SET_MD_RIPPLE_STYLE', style: styleEl});
-        await delay(0);
-        dispatch({
-            type: 'SET_SCALED',
-            scaled: {
-                [id]: 'md-ripple-scaled'
+        let styleEl;
+        if(isIconRipple) {
+            const pos = ripple.getBoundingClientRect();
+            const widthMiddle = pos.width / 2;
+            const relativeMiddle = pos.left + widthMiddle;
+            const relative = e.pageX - relativeMiddle;
+            const width = ripple.offsetWidth + Math.abs(relative) * 2.1;
+            const x = e.pageX - pos.left;
+            const y = e.pageY - pos.top;
+            styleEl = {
+                width: `${width}px`,
+                height: `${width}px`,
+                top: `${y}px`,
+                left: `${x}px`
+            };
+        } else {
+            const width = ripple.offsetWidth;
+            const middle = width/2;
+            styleEl = {
+                width: `${width}px`,
+                height: `${width}px`,
+                top: `${middle}px`,
+                left: `${middle}px`
             }
-        });
+        }
+
+        await dispatch({type: 'SET_MD_RIPPLE_STYLE', style: styleEl});
         dispatch({
             type: 'SET_ACTIVE',
             active: {
                 [id]: 'md-ripple-active'
             }
         });
+        await delay(30);
+        dispatch({
+            type: 'SET_SCALED',
+            scaled: {
+                [id]: 'md-ripple-scaled',
+            }
+        });
+
     }
 
     async function mouseUp() {
@@ -106,18 +125,22 @@ export function useMdRipple() {
         clearTimeout(stateRipple.idTimeout);
         const idTimeout = setTimeout(function () {
             dispatch({type: 'RESET'})
-        }, 550);
+        }, 500);
         dispatch({type: 'MD_RIPPLE_UPDATE', payload: {idTimeout}});
-        await delay(300);
+        await delay(200);
         dispatch({
             type: 'SET_REMOVE',
             remove: {
                 [id]: 'md-ripple-remove'
             }
         });
+        await delay(100)
         dispatch({
             type: 'SET_ACTIVE',
             active: {
+                [id]: ''
+            },
+            remove: {
                 [id]: ''
             }
         });
