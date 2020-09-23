@@ -1,7 +1,9 @@
-import React, {useEffect, useReducer} from 'react';
+import React, {useEffect, useReducer, useRef} from 'react';
 
 import {Tab} from "./Tab";
 import {usePrevious} from "../../hooks/usePrevious";
+import {ControlBtn} from "./ControlBtn";
+import {useGetWidthTab, useGetBar} from "./hooks";
 import './style.css';
 
 const initialState = {
@@ -12,7 +14,10 @@ const initialState = {
     right: 0,
     isBar: false,
     barClass: 'md-right',
-    contentClass: 'md-right'
+    contentClass: 'md-right',
+    widthTabsCanvas: 0,
+    widthPaginationWrapper: 0,
+    tx: 0,
 };
 
 function reducer(state, action) {
@@ -26,7 +31,7 @@ function reducer(state, action) {
         case 'MD_WIDTH_TABS_UPDATE': {
             return {
                 ...state,
-                widthTab:{...state.widthTab, ...action.payload}
+                widthTab: {...state.widthTab, ...action.payload}
             }
         }
         default: {
@@ -38,7 +43,8 @@ function reducer(state, action) {
 export function MdTabs(props) {
     const {
         tabs = [],
-        backgroundRipple = 'rgb(255, 82, 82)'
+        backgroundRipple = 'rgb(255, 82, 82)',
+        isPaginated = true,
     } = props;
 
     const [stateMdTabs, dispatch] = useReducer(reducer, initialState);
@@ -49,61 +55,61 @@ export function MdTabs(props) {
         left,
         right,
         isBar,
-        barClass
+        barClass,
+        widthTabsCanvas,
+        widthPaginationWrapper,
+        tx,
     } = stateMdTabs;
     const prevId = usePrevious(id);
+    const divRef = useRef(null);
+
+    useGetWidthTab({ref: divRef.current, dispatch});
+
+    useGetBar({id, widthTab, dispatch, prevId});
 
     useEffect(() => {
-        const res = getBar();
-        const barClass = prevId > id ? 'md-left' : 'md-right';
-        const payload = {left: res.left, right: res.right, barClass};
-        dispatch({type: 'MD_TABS_UPDATE', payload})
-    }, [id,widthTab]);
-
-    useEffect(() => {
-        if(Object.keys(widthTab).length === tabs.length) {
+        if (Object.keys(widthTab).length === tabs.length) {
             dispatch({type: 'MD_TABS_UPDATE', payload: {isBar: true}})
         }
     }, [widthTab]);
 
-
-    function getBar() {
-        const width = Object.keys(widthTab);
-        const last = width.length - 1;
-
-        return width.reduce((acc, item, i) => {
-            if (id === 0) {
-                if (i === 0) return acc;
-                acc.left = 0;
-                acc.right = acc.right + widthTab[i];
-                return acc;
-            }
-            if (id === last) {
-                if (i === last) return acc;
-                acc.right = 0;
-                acc.left = acc.left + widthTab[i];
-                return acc;
-            }
-            if (id === i) {
-                acc.isCount = true;
-                return acc;
-            } else if (acc.isCount) {
-                acc.right = acc.right + widthTab[i];
-                return acc;
-            }
-            acc.left = acc.left + widthTab[i];
+    async function clickTabs(e, id) {
+        e.preventDefault();
+        const width = Object.keys(widthTab).reduce((acc, item) => {
+            if (item > id) return acc;
+            acc = acc + widthTab[item];
             return acc;
-        }, {left: 0, right: 0});
+        }, 0);
+
+        const calculateWidth = widthTabsCanvas - width;
+        const diffWidth = tx + width;
+        const txCompare = Math.min(calculateWidth, 0);
+        const txUpdate = Math.min(txCompare, tx + diffWidth + 20);
+        if (diffWidth > widthTab[id] && txCompare > tx) {
+            const payload = {activeTab: {[id]: 'md-active'}, id, tx};
+
+            return dispatch({type: 'MD_TABS_UPDATE', payload})
+        }
+        const payload = {activeTab: {[id]: 'md-active'}, id, tx: txUpdate};
+        await dispatch({type: 'MD_TABS_UPDATE', payload})
     }
 
+    const last = widthPaginationWrapper - widthTabsCanvas;
     return (
         <div className="md-tabs md-dynamic-height">
             <div className="md-tabs-wrapper">
-                <div className="md-tabs-canvas">
-                    <div className="md-pagination-wrapper"
-                         style={{transform: "translate(0px, 0px)"}}
-                    >{
-                        tabs.map((item, i) => {
+                <ControlBtn
+                    tx={tx}
+                    last={last}
+                    widthTabsCanvas={widthTabsCanvas}
+                    dispatch={dispatch}
+                />
+                <div
+                    className={`md-tabs-canvas ${isPaginated ? 'md-paginated' : ''}`}
+                    ref={divRef}
+                >
+                    <div className="md-pagination-wrapper" style={{transform: `translate(${tx}px, 0px)`}}>
+                        {tabs.map((item, i) => {
                             const {tab} = item || {};
                             return (
                                 <Tab
@@ -113,12 +119,14 @@ export function MdTabs(props) {
                                     backgroundRipple={backgroundRipple}
                                     tab={tab}
                                     dispatch={dispatch}
+                                    clickTabs={clickTabs}
                                 />
                             )
                         })
-                    }
+                        }
                         {isBar
-                            ? <div className={`md-ink-bar ${barClass}`} style={{left:`${left}px` , right: `${right}px`}}/>
+                            ?
+                            <div className={`md-ink-bar ${barClass}`} style={{left: `${left}px`, right: `${right}px`}}/>
                             : null}
                     </div>
                 </div>
@@ -127,9 +135,9 @@ export function MdTabs(props) {
                 {tabs.map((item, i) => {
                     const contentClass = id < i ? 'md-right' : 'md-left';
                     return (
-                    <div key={i} className={`_md md-no-scroll ${activeTab[i] || contentClass} md-tab-content`}>
-                    {item.tabContent}
-                    </div>
+                        <div key={i} className={`_md md-no-scroll ${activeTab[i] || contentClass} md-tab-content`}>
+                            {item.tabContent}
+                        </div>
                     )
                 })}
             </div>

@@ -236,3 +236,43 @@
     transition-delay: .5s;
     visibility: hidden;
 }
+
+.md-tabs-wrapper .md-prev-button,
+.md-tabs-wrapper .md-next-button {
+    height: 100%;
+    width: 32px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1em;
+    z-index: 2;
+    cursor: pointer;
+    font-size: 16px;
+    background: transparent no-repeat 50%;
+    transition: all .5s cubic-bezier(.35,0,.25,1);
+    color: rgba(0,0,0,0.54);
+}
+.md-tabs-wrapper .md-next-button {
+    right: 0;
+}
+.md-prev-button .md-icon,
+.md-next-button .md-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.md-tabs-canvas.md-paginated {
+    margin: 0 32px;
+}
+
+.md-tabs-canvas.md-paginated {
+    margin: 0 32px;
+}
+
+.md-prev-button.md-disabled,
+.md-prev-button.md-disabled {
+    opacity: .25;
+    cursor: default;
+}

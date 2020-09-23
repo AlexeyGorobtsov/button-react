@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useMdRipple} from "../../hooks/use-md-ripple";
 import {MdRipple} from "../md-ripple";
 import {useClientRect} from "../../hooks/use-client-react/use-client-rect";
@@ -9,7 +9,8 @@ export function Tab(props) {
         activeTab = {},
         backgroundRipple,
         tab = '',
-        dispatch = () => console.log('dispatch')
+        dispatch = () => console.log('dispatch'),
+        clickTabs = () => console.log('clickTabs')
     } = props;
 
     const [rect, ref] = useClientRect();
@@ -22,12 +23,6 @@ export function Tab(props) {
     }, [rect]);
 
     const {mouseDown, mouseUp, stateRipple, divRef} = useMdRipple({isIconRipple: true});
-
-    async function clickTabs(e, id) {
-        e.preventDefault();
-        const payload = {activeTab: {[id]: 'md-active'}, id};
-        await dispatch({type: 'MD_TABS_UPDATE', payload})
-    }
 
 
     const {
