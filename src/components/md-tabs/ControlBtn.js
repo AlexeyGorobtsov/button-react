@@ -7,8 +7,11 @@ export function ControlBtn(props) {
         tx,
         last,
         widthTabsCanvas = 0,
+        isShow = false,
         dispatch = () => console.log('dispatch')
     } = props;
+
+    if (!isShow) return []
 
     function clickPrev() {
         console.log(1)

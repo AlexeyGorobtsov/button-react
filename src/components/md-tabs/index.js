@@ -3,7 +3,7 @@ import React, {useEffect, useReducer, useRef} from 'react';
 import {Tab} from "./Tab";
 import {usePrevious} from "../../hooks/usePrevious";
 import {ControlBtn} from "./ControlBtn";
-import {useGetWidthTab, useGetBar} from "./hooks";
+import {useGetWidthTab, useGetBar, useWindowSize} from "./hooks";
 import './style.css';
 
 const initialState = {
@@ -44,7 +44,6 @@ export function MdTabs(props) {
     const {
         tabs = [],
         backgroundRipple = 'rgb(255, 82, 82)',
-        isPaginated = true,
     } = props;
 
     const [stateMdTabs, dispatch] = useReducer(reducer, initialState);
@@ -63,7 +62,10 @@ export function MdTabs(props) {
     const prevId = usePrevious(id);
     const divRef = useRef(null);
 
-    useGetWidthTab({ref: divRef.current, dispatch});
+    const windowSize = useWindowSize();
+
+    useGetWidthTab({ ref: divRef.current, dispatch, windowSize });
+
 
     useGetBar({id, widthTab, dispatch, prevId});
 
@@ -84,7 +86,7 @@ export function MdTabs(props) {
         const calculateWidth = widthTabsCanvas - width;
         const diffWidth = tx + width;
         const txCompare = Math.min(calculateWidth, 0);
-        const txUpdate = Math.min(txCompare, tx + diffWidth + 20);
+        const txUpdate = Math.min(txCompare, tx + diffWidth + widthTab[id]);
         if (diffWidth > widthTab[id] && txCompare > tx) {
             const payload = {activeTab: {[id]: 'md-active'}, id, tx};
 
@@ -95,6 +97,7 @@ export function MdTabs(props) {
     }
 
     const last = widthPaginationWrapper - widthTabsCanvas;
+    const isShow = widthPaginationWrapper > widthTabsCanvas;
     return (
         <div className="md-tabs md-dynamic-height">
             <div className="md-tabs-wrapper">
@@ -103,9 +106,10 @@ export function MdTabs(props) {
                     last={last}
                     widthTabsCanvas={widthTabsCanvas}
                     dispatch={dispatch}
+                    isShow={isShow}
                 />
                 <div
-                    className={`md-tabs-canvas ${isPaginated ? 'md-paginated' : ''}`}
+                    className="md-tabs-canvas md-paginated"
                     ref={divRef}
                 >
                     <div className="md-pagination-wrapper" style={{transform: `translate(${tx}px, 0px)`}}>

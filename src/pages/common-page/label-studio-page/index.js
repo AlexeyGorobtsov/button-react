@@ -17,8 +17,8 @@ export function LabelStudioPage(props) {
     <Image name="img" value="$image" maxWidth="400px"/>
 
     <PolygonLabels name="tag" toName="img">
-      <Label value="Hello" background="blue" class="test" />
-      <Label value="Red" background="red"/>
+      <Label value="He" background="blue" class="test" />
+      <Label value="Rd" background="red"/>
     </PolygonLabels>
   </View>
     `,
