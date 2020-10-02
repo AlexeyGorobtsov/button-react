@@ -1,6 +1,7 @@
-import React, {useRef, useState, useEffect, useReducer} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 
 import './style.css';
+import {asyncMap} from "../../helpers";
 
 function newRow(i) {
     return {
@@ -38,7 +39,7 @@ const cells = [
     {label: "file", name: "file"}
 ];
 
-const result = makeData(200);
+const result = makeData(500);
 
 function renderRow(row, cells) {
     return cells.map((cell, i) => {
@@ -53,16 +54,21 @@ function Tbody(props) {
         result = [],
         cells = {}
     } = props;
+    const ref = useRef([])
 
+    asyncMap({array: result, callback: (item) => console.log(item), ref: ref.current })
+    console.log({ref})
 
-    return (
-        result.map((row, i) => {
-            return (
-                <tr key={i}>{renderRow(row, cells)}</tr>
-            )
+    return ref.current;
 
-        })
-    )
+    // return (
+    //     result.map((row, i) => {
+    //         return (
+    //             <tr key={i}>{renderRow(row, cells)}</tr>
+    //         )
+    //
+    //     })
+    // )
 }
 
 function getChunks(result, num) {
@@ -77,32 +83,33 @@ function getChunks(result, num) {
     return {...chunks, ...{[numberOfChunk]: result.slice(num * numberOfChunk, len)}}
 }
 
-const ch = getChunks(result, 60);
+// const ch = getChunks(result, 60);
 
 
 export function LazyTable(props) {
-    const divRef = useRef(null);
-    const tbodyRef = useRef(null);
-
-    const [res, setRes] = useState([]);
-    const [delimiter, setDelimiter] = useState(0);
-
-    useEffect(() => {
-        setRes(ch[0]);
-    }, []);
+    // const divRef = useRef(null);
+    // const tbodyRef = useRef(null);
+    //
+    // const [res, setRes] = useState([]);
+    // const [delimiter, setDelimiter] = useState(0);
+    //
+    // useEffect(() => {
+    //     setRes(ch[0]);
+    // }, []);
+    Tbody({result, cells})
 
     return (
         <div
             className="scroll-box"
-            ref={divRef}
-            onScroll={e => {
-                const top = e.target.scrollTop;
-                const tbHeight = tbodyRef.current.clientHeight;
-                if(top > tbHeight / 2 && ch[delimiter + 1]) {
-                    setRes([...res, ...ch[delimiter + 1]]);
-                    setDelimiter(delimiter + 1);
-                }
-            }}
+            // ref={divRef}
+            // onScroll={e => {
+            //     const top = e.target.scrollTop;
+            //     const tbHeight = tbodyRef.current.clientHeight;
+            //     if(top > tbHeight / 2 && ch[delimiter + 1]) {
+            //         setRes([...res, ...ch[delimiter + 1]]);
+            //         setDelimiter(delimiter + 1);
+            //     }
+            // }}
         >
             <table
             >
@@ -114,12 +121,12 @@ export function LazyTable(props) {
                 </tr>
                 </thead>
                 <tbody
-                    ref={tbodyRef}
+                    // ref={tbodyRef}
                 >
-                <Tbody
-                    result={res}
-                    cells={cells}
-                />
+                {/*<Tbody*/}
+                {/*    result={result}*/}
+                {/*    cells={cells}*/}
+                {/*/>*/}
                 <tr className="vt-last-tr"/>
                 </tbody>
             </table>
